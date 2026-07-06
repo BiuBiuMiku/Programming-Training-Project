@@ -856,6 +856,79 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-> **版本：** v1.1
+### 站点管理
+
+#### 新增站点
+
+**方法/路径：** `POST /api/admin/stations`
+**认证：** 是（admin）
+
+**请求：**
+
+```json
+{
+    "code": "NJH",
+    "name": "南京",
+    "city": "南京",
+    "edges": [
+        { "fromCode": "NJH", "toCode": "SHH", "distance": 300 },
+        { "fromCode": "NJH", "toCode": "BJP", "distance": 1000 }
+    ]
+}
+```
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| code | string | 是 | 拼音码，3 位大写字母 |
+| name | string | 是 | 站名 |
+| city | string | 否 | 所在城市 |
+| edges | array | 否 | 与此站点相连的距离边 |
+| edges[].fromCode | string | 是 | 本端站点 code |
+| edges[].toCode | string | 是 | 对端站点 code |
+| edges[].distance | int | 是 | 距离（公里），dijkstra 算法使用 |
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "站点添加成功", "data": null }
+```
+
+**失败示例：**
+
+```json
+{ "code": 40001, "message": "站点编码已存在", "data": null }
+```
+
+---
+
+#### 编辑站点
+
+**方法/路径：** `PUT /api/admin/stations/{code}`
+**认证：** 是（admin）
+
+**请求：** 同新增站点
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "站点更新成功", "data": null }
+```
+
+---
+
+#### 删除站点
+
+**方法/路径：** `DELETE /api/admin/stations/{code}`
+**认证：** 是（admin）
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "站点删除成功", "data": null }
+```
+
+---
+
+> **版本：** v1.2
 > **最后更新：** 2026-07-06
 > **前后端确认人签字：** ____________
