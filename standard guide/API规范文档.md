@@ -27,7 +27,48 @@
 
 ## M1 · 用户登录与权限管理
 
-### 用户注册
+### 发送短信验证码
+
+**方法/路径：** `POST /api/auth/send-code`
+**认证：** 否
+
+**请求：**
+
+```json
+{
+    "phone": "13800138000"
+}
+```
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| phone | string | 是 | 11 位手机号 |
+
+**成功响应（200）：**
+
+```json
+{
+    "code": 0,
+    "message": "验证码已发送",
+    "data": null
+}
+```
+
+**失败示例：**
+
+```json
+{
+    "code": 40001,
+    "message": "手机号格式不正确",
+    "data": null
+}
+```
+
+> 开发阶段可直接在控制台打印验证码，或固定为 123456。
+
+---
+
+### 用户注册（手机号）
 
 **方法/路径：** `POST /api/auth/register`
 **认证：** 否
@@ -36,21 +77,17 @@
 
 ```json
 {
-    "username": "zhangsan",
-    "password": "123456",
-    "realName": "张三",
-    "idCard": "110101199001011234",
-    "phone": "13800138000"
+    "phone": "13800138000",
+    "code": "123456",
+    "password": "123456"
 }
 ```
 
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| username | string | 是 | 用户名，3-20 位字母数字下划线 |
-| password | string | 是 | 密码，6-30 位 |
-| realName | string | 是 | 真实姓名 |
-| idCard | string | 是 | 18 位身份证号 |
 | phone | string | 是 | 11 位手机号 |
+| code | string | 是 | 短信验证码，4-6 位 |
+| password | string | 是 | 密码，6-30 位 |
 
 **成功响应（200）：**
 
@@ -58,6 +95,19 @@
 {
     "code": 0,
     "message": "注册成功",
+    "data": {
+        "token": "eyJhbGciOiJIUzI1NiIs...",
+        "phone": "138****8000"
+    }
+}
+```
+
+**失败示例：**
+
+```json
+{
+    "code": 40001,
+    "message": "验证码错误或已过期",
     "data": null
 }
 ```
@@ -704,5 +754,108 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-> **版本：** v1.0
+## M5 · 管理员后台（需 admin 角色）
+
+> 以下接口均需认证，且要求 Token 中 role = "admin"。
+
+### 获取所有车次（管理列表）
+
+**方法/路径：** `GET /api/admin/trains`
+**认证：** 是（admin）
+
+**成功响应（200）：**
+
+```json
+{
+    "code": 0,
+    "message": "ok",
+    "data": [
+        {
+            "trainNo": "G101",
+            "fromStation": "北京",
+            "toStation": "上海",
+            "departureTime": "08:00",
+            "arrivalTime": "12:30",
+            "duration": "4h30min",
+            "date": "2026-07-10",
+            "seatTypes": [
+                { "type": "二等座", "price": 553.0, "remain": 120 }
+            ]
+        }
+    ]
+}
+```
+
+---
+
+### 新增车次
+
+**方法/路径：** `POST /api/admin/trains`
+**认证：** 是（admin）
+
+**请求：**
+
+```json
+{
+    "trainNo": "G101",
+    "fromStation": "北京",
+    "toStation": "上海",
+    "departureTime": "08:00",
+    "arrivalTime": "12:30",
+    "duration": "4h30min",
+    "date": "2026-07-10",
+    "stops": [
+        { "station": "北京", "arrive": "-", "depart": "08:00", "seq": 1 },
+        { "station": "上海", "arrive": "12:30", "depart": "-", "seq": 2 }
+    ],
+    "seatTypes": [
+        { "type": "二等座", "price": 553.0, "remain": 120 }
+    ]
+}
+```
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "车次添加成功", "data": null }
+```
+
+---
+
+### 编辑车次
+
+**方法/路径：** `PUT /api/admin/trains/{trainNo}`
+**认证：** 是（admin）
+
+**请求：** 同新增车次（全量替换）
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "车次更新成功", "data": null }
+```
+
+---
+
+### 删除车次
+
+**方法/路径：** `DELETE /api/admin/trains/{trainNo}`
+**认证：** 是（admin）
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "车次删除成功", "data": null }
+```
+
+**失败示例：**
+
+```json
+{ "code": 40401, "message": "车次不存在", "data": null }
+```
+
+---
+
+> **版本：** v1.1
 > **最后更新：** 2026-07-06
+> **前后端确认人签字：** ____________
