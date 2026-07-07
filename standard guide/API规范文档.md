@@ -263,7 +263,6 @@
 | edges[].fromCode | string | 起点 code |
 | edges[].toCode | string | 终点 code |
 | edges[].distance | int | 距离（公里） |
-| city | string | 所在城市 |
 
 ---
 
@@ -295,10 +294,11 @@
             "arrivalTime": "12:30",
             "duration": "4h30min",
             "date": "2026-07-10",
+            "totalDistanceKm": 1300,
             "seatTypes": [
-                { "type": "二等座", "price": 553.0, "remain": 120 },
-                { "type": "一等座", "price": 933.0, "remain": 45 },
-                { "type": "商务座", "price": 1748.0, "remain": 8 }
+                { "type": "二等座", "price": 0.42, "remain": 120 },
+                { "type": "一等座", "price": 0.72, "remain": 45 },
+                { "type": "商务座", "price": 1.35, "remain": 8 }
             ]
         }
     ]
@@ -403,9 +403,10 @@
                 "departureTime": "08:00",
                 "arrivalTime": "12:30",
                 "duration": "4h30min",
+                "totalDistanceKm": 1300,
                 "seatTypes": [
-                    { "type": "二等座", "price": 553.0, "remain": 120 },
-                    { "type": "一等座", "price": 933.0, "remain": 45 }
+                    { "type": "二等座", "price": 0.42, "remain": 120 },
+                    { "type": "一等座", "price": 0.72, "remain": 45 }
                 ]
             }
         ]
@@ -437,7 +438,7 @@
     "data": {
         "directTrains": [
             { "trainNo": "G101", "departureTime": "08:00", "arrivalTime": "12:30",
-              "duration": "4h30min", "minPrice": 553.0 }
+              "duration": "4h30min", "minPrice": 546.0, "totalDistanceKm": 1300 }
         ],
         "transferRoutes": [
             {
@@ -579,7 +580,7 @@
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| status | string | 否 | 筛选状态：unpaid / paid / refunded / changed |
+| status | string | 否 | 筛选状态：unpaid / paid / refunded / changed / cancelled |
 | date | string | 否 | 筛选日期 yyyy-MM-dd |
 
 **成功响应（200）：**
@@ -715,7 +716,7 @@
             "toStation": "上海",
             "date": "2026-07-10",
             "seatType": "二等座",
-            "price": 553.0
+            "price": 546.0
         },
         "availableTrains": [
             {
@@ -725,8 +726,8 @@
                 "departureTime": "10:00",
                 "arrivalTime": "14:30",
                 "seatTypes": [
-                    { "type": "二等座", "price": 553.0, "remain": 35 },
-                    { "type": "一等座", "price": 933.0, "remain": 12 }
+                    { "type": "二等座", "price": 0.42, "remain": 35 },
+                    { "type": "一等座", "price": 0.72, "remain": 12 }
                 ],
                 "priceDiff": 0.0
             }
@@ -831,8 +832,9 @@ Token 采用 JWT HS256 签名，Payload 包含：
             "arrivalTime": "12:30",
             "duration": "4h30min",
             "date": "2026-07-10",
+            "totalDistanceKm": 1300,
             "seatTypes": [
-                { "type": "二等座", "price": 553.0, "remain": 120 }
+                { "type": "二等座", "price": 0.42, "remain": 120 }
             ]
         }
     ]
@@ -909,12 +911,24 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-### 站点管理
-
-#### 新增站点
+### 新增站点
 
 **方法/路径：** `POST /api/admin/stations`
 **认证：** 是（admin）
+
+**请求：**
+
+```json
+{
+    "code": "NJH",
+    "name": "南京",
+    "city": "南京",
+    "edges": [
+        { "fromCode": "NJH", "toCode": "SHH", "distance": 300 },
+        { "fromCode": "NJH", "toCode": "BJP", "distance": 1000 }
+    ]
+}
+```
 
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
@@ -940,7 +954,7 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-#### 编辑站点
+### 编辑站点
 
 **方法/路径：** `PUT /api/admin/stations/{code}`
 **认证：** 是（admin）
@@ -955,7 +969,7 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-#### 删除站点
+### 删除站点
 
 **方法/路径：** `DELETE /api/admin/stations/{code}`
 **认证：** 是（admin）
