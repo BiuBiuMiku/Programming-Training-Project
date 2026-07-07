@@ -239,9 +239,17 @@
     "code": 0,
     "message": "ok",
     "data": [
-        { "code": "BJP", "name": "北京", "city": "北京" },
-        { "code": "SHH", "name": "上海", "city": "上海" },
-        { "code": "GZQ", "name": "广州", "city": "广州" }
+        { "code": "BJP", "name": "北京", "city": "北京",
+          "edges": [
+            { "fromCode": "BJP", "toCode": "SHH", "distance": 1300 },
+            { "fromCode": "BJP", "toCode": "NJH", "distance": 1000 }
+          ]
+        },
+        { "code": "SHH", "name": "上海", "city": "上海",
+          "edges": [
+            { "fromCode": "SHH", "toCode": "BJP", "distance": 1300 }
+          ]
+        }
     ]
 }
 ```
@@ -250,6 +258,11 @@
 |--------------|------|------|
 | code | string | 站名拼音码（电报码） |
 | name | string | 站名 |
+| city | string | 所在城市 |
+| edges | array | 该站与其他站的距离边 |
+| edges[].fromCode | string | 起点 code |
+| edges[].toCode | string | 终点 code |
+| edges[].distance | int | 距离（公里） |
 | city | string | 所在城市 |
 
 ---
@@ -918,53 +931,4 @@ Token 采用 JWT HS256 签名，Payload 包含：
 ```
 
 | 字段 | 类型 | 必填 | 说明 |
-|------|------|------|------|
-| code | string | 是 | 拼音码，3 位大写字母 |
-| name | string | 是 | 站名 |
-| city | string | 否 | 所在城市 |
-| edges | array | 否 | 与此站点相连的距离边 |
-| edges[].fromCode | string | 是 | 本端站点 code |
-| edges[].toCode | string | 是 | 对端站点 code |
-| edges[].distance | int | 是 | 距离（公里），dijkstra 算法使用 |
-
-**成功响应（200）：**
-
-```json
-{ "code": 0, "message": "站点添加成功", "data": null }
-```
-
-**失败示例：**
-
-```json
-{ "code": 40001, "message": "站点编码已存在", "data": null }
-```
-
----
-
-#### 编辑站点
-
-**方法/路径：** `PUT /api/admin/stations/{code}`
-**认证：** 是（admin）
-
-**请求：** 同新增站点
-
-**成功响应（200）：**
-
-```json
-{ "code": 0, "message": "站点更新成功", "data": null }
-```
-
----
-
-#### 删除站点
-
-**方法/路径：** `DELETE /api/admin/stations/{code}`
-**认证：** 是（admin）
-
-**成功响应（200）：**
-
-```json
-{ "code": 0, "message": "站点删除成功", "data": null }
-```
-
----
+|------|------|------|-
