@@ -7,6 +7,7 @@
 - 所有响应统一包层：`{ "code": 0, "message": "xxx", "data": {...} }`
 - code 为 0 表示成功，非 0 一律视为失败，前端取 message 字段展示错误
 - 需要认证的接口在 Header 中携带：`Authorization: Bearer <token>`
+- **票价计算规则：** `seatTypes.price` 字段表示每公里单价（元/公里），实际票价 = price × 行程总距离。每个经停站含 `distanceKm` 字段（上一站到本站的公里数），后端应自动计算 `totalDistanceKm` 作为全程总距离返回。
 
 ---
 
@@ -301,8 +302,9 @@
 | duration | string | 运行时长 |
 | date | string | 日期 yyyy-MM-dd |
 | seatTypes[].type | string | 座位类型名称 |
-| seatTypes[].price | double | 票价（元） |
+| seatTypes[].price | double | 每公里单价（元/公里） |
 | seatTypes[].remain | int | 余票数 |
+| totalDistanceKm | int | 全程总距离（公里） |
 
 ---
 
@@ -334,11 +336,12 @@
         "duration": "4h30min",
         "date": "2026-07-10",
         "stops": [
-            { "station": "北京", "arrive": "-",    "depart": "08:00", "seq": 1 },
-            { "station": "济南", "arrive": "09:30", "depart": "09:33", "seq": 2 },
-            { "station": "南京", "arrive": "11:10", "depart": "11:13", "seq": 3 },
-            { "station": "上海", "arrive": "12:30", "depart": "-",    "seq": 4 }
-        ]
+            { "station": "北京", "arrive": "-",    "depart": "08:00", "seq": 1, "distanceKm": 0 },
+            { "station": "济南", "arrive": "09:30", "depart": "09:33", "seq": 2, "distanceKm": 400 },
+            { "station": "南京", "arrive": "11:10", "depart": "11:13", "seq": 3, "distanceKm": 600 },
+            { "station": "上海", "arrive": "12:30", "depart": "-",    "seq": 4, "distanceKm": 300 }
+        ],
+        "totalDistanceKm": 1300
     }
 }
 ```
@@ -349,6 +352,8 @@
 | arrive | string | 到站时间，首站为 "-" |
 | depart | string | 发车时间，末站为 "-" |
 | seq | int | 站序 |
+| distanceKm | int | 上一站到本站的距离（公里），首站为 0 |
+| totalDistanceKm | int | 全程总距离（公里），所有 distanceKm 之和 |
 
 ---
 
@@ -840,11 +845,11 @@ Token 采用 JWT HS256 签名，Payload 包含：
     "duration": "4h30min",
     "date": "2026-07-10",
     "stops": [
-        { "station": "北京", "arrive": "-", "depart": "08:00", "seq": 1 },
-        { "station": "上海", "arrive": "12:30", "depart": "-", "seq": 2 }
+        { "station": "北京", "arrive": "-", "depart": "08:00", "seq": 1, "distanceKm": 0 },
+        { "station": "上海", "arrive": "12:30", "depart": "-", "seq": 2, "distanceKm": 1300 }
     ],
     "seatTypes": [
-        { "type": "二等座", "price": 553.0, "remain": 120 }
+        { "type": "二等座", "price": 0.42, "remain": 120 }
     ]
 }
 ```
@@ -925,41 +930,4 @@ Token 采用 JWT HS256 签名，Payload 包含：
 **成功响应（200）：**
 
 ```json
-{ "code": 0, "message": "站点添加成功", "data": null }
-```
-
-**失败示例：**
-
-```json
-{ "code": 40001, "message": "站点编码已存在", "data": null }
-```
-
----
-
-#### 编辑站点
-
-**方法/路径：** `PUT /api/admin/stations/{code}`
-**认证：** 是（admin）
-
-**请求：** 同新增站点
-
-**成功响应（200）：**
-
-```json
-{ "code": 0, "message": "站点更新成功", "data": null }
-```
-
----
-
-#### 删除站点
-
-**方法/路径：** `DELETE /api/admin/stations/{code}`
-**认证：** 是（admin）
-
-**成功响应（200）：**
-
-```json
-{ "code": 0, "message": "站点删除成功", "data": null }
-```
-
----
+{ "code": 0, "message": "站
