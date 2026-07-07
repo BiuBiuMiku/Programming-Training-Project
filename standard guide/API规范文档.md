@@ -7,6 +7,7 @@
 - 所有响应统一包层：`{ "code": 0, "message": "xxx", "data": {...} }`
 - code 为 0 表示成功，非 0 一律视为失败，前端取 message 字段展示错误
 - 需要认证的接口在 Header 中携带：`Authorization: Bearer <token>`
+- **票价计算规则：** `seatTypes.price` 字段表示每公里单价（元/公里），实际票价 = price × 行程总距离。每个经停站含 `distanceKm` 字段（上一站到本站的公里数），后端应自动计算 `totalDistanceKm` 作为全程总距离返回。
 
 ---
 
@@ -193,6 +194,35 @@
 
 ---
 
+### 更新个人信息
+
+**方法/路径：** `PUT /api/auth/profile`
+**认证：** 是
+
+**请求：**
+
+```json
+{
+    "realName": "张三",
+    "idCard": "110101199001011234",
+    "phone": "13800138000"
+}
+```
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| realName | string | 是 | 真实姓名 |
+| idCard | string | 是 | 18 位身份证号 |
+| phone | string | 否 | 11 位手机号 |
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "个人信息已保存", "data": null }
+```
+
+---
+
 ## M2 · 车次与线路管理
 
 ### 站点列表
@@ -209,9 +239,17 @@
     "code": 0,
     "message": "ok",
     "data": [
-        { "code": "BJP", "name": "北京", "city": "北京" },
-        { "code": "SHH", "name": "上海", "city": "上海" },
-        { "code": "GZQ", "name": "广州", "city": "广州" }
+        { "code": "BJP", "name": "北京", "city": "北京",
+          "edges": [
+            { "fromCode": "BJP", "toCode": "SHH", "distance": 1300 },
+            { "fromCode": "BJP", "toCode": "NJH", "distance": 1000 }
+          ]
+        },
+        { "code": "SHH", "name": "上海", "city": "上海",
+          "edges": [
+            { "fromCode": "SHH", "toCode": "BJP", "distance": 1300 }
+          ]
+        }
     ]
 }
 ```
@@ -221,6 +259,10 @@
 | code | string | 站名拼音码（电报码） |
 | name | string | 站名 |
 | city | string | 所在城市 |
+| edges | array | 该站与其他站的距离边 |
+| edges[].fromCode | string | 起点 code |
+| edges[].toCode | string | 终点 code |
+| edges[].distance | int | 距离（公里） |
 
 ---
 
@@ -252,10 +294,11 @@
             "arrivalTime": "12:30",
             "duration": "4h30min",
             "date": "2026-07-10",
+            "totalDistanceKm": 1300,
             "seatTypes": [
-                { "type": "二等座", "price": 553.0, "remain": 120 },
-                { "type": "一等座", "price": 933.0, "remain": 45 },
-                { "type": "商务座", "price": 1748.0, "remain": 8 }
+                { "type": "二等座", "price": 0.42, "remain": 120 },
+                { "type": "一等座", "price": 0.72, "remain": 45 },
+                { "type": "商务座", "price": 1.35, "remain": 8 }
             ]
         }
     ]
@@ -272,8 +315,9 @@
 | duration | string | 运行时长 |
 | date | string | 日期 yyyy-MM-dd |
 | seatTypes[].type | string | 座位类型名称 |
-| seatTypes[].price | double | 票价（元） |
+| seatTypes[].price | double | 每公里单价（元/公里） |
 | seatTypes[].remain | int | 余票数 |
+| totalDistanceKm | int | 全程总距离（公里） |
 
 ---
 
@@ -282,7 +326,13 @@
 **方法/路径：** `GET /api/trains/{trainNo}`
 **认证：** 否
 
-**示例：** `GET /api/trains/G101`
+**请求：** Query 参数
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| date | string | 否 | 日期，格式 yyyy-MM-dd，用于确定该日期下的经停和票价 |
+
+**示例：** `GET /api/trains/G101?date=2026-07-10`
 
 **成功响应（200）：**
 
@@ -299,11 +349,12 @@
         "duration": "4h30min",
         "date": "2026-07-10",
         "stops": [
-            { "station": "北京", "arrive": "-",    "depart": "08:00", "seq": 1 },
-            { "station": "济南", "arrive": "09:30", "depart": "09:33", "seq": 2 },
-            { "station": "南京", "arrive": "11:10", "depart": "11:13", "seq": 3 },
-            { "station": "上海", "arrive": "12:30", "depart": "-",    "seq": 4 }
-        ]
+            { "station": "北京", "arrive": "-",    "depart": "08:00", "seq": 1, "distanceKm": 0 },
+            { "station": "济南", "arrive": "09:30", "depart": "09:33", "seq": 2, "distanceKm": 400 },
+            { "station": "南京", "arrive": "11:10", "depart": "11:13", "seq": 3, "distanceKm": 600 },
+            { "station": "上海", "arrive": "12:30", "depart": "-",    "seq": 4, "distanceKm": 300 }
+        ],
+        "totalDistanceKm": 1300
     }
 }
 ```
@@ -314,6 +365,8 @@
 | arrive | string | 到站时间，首站为 "-" |
 | depart | string | 发车时间，末站为 "-" |
 | seq | int | 站序 |
+| distanceKm | int | 上一站到本站的距离（公里），首站为 0 |
+| totalDistanceKm | int | 全程总距离（公里），所有 distanceKm 之和 |
 
 ---
 
@@ -350,9 +403,10 @@
                 "departureTime": "08:00",
                 "arrivalTime": "12:30",
                 "duration": "4h30min",
+                "totalDistanceKm": 1300,
                 "seatTypes": [
-                    { "type": "二等座", "price": 553.0, "remain": 120 },
-                    { "type": "一等座", "price": 933.0, "remain": 45 }
+                    { "type": "二等座", "price": 0.42, "remain": 120 },
+                    { "type": "一等座", "price": 0.72, "remain": 45 }
                 ]
             }
         ]
@@ -384,7 +438,7 @@
     "data": {
         "directTrains": [
             { "trainNo": "G101", "departureTime": "08:00", "arrivalTime": "12:30",
-              "duration": "4h30min", "minPrice": 553.0 }
+              "duration": "4h30min", "minPrice": 546.0, "totalDistanceKm": 1300 }
         ],
         "transferRoutes": [
             {
@@ -526,7 +580,7 @@
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| status | string | 否 | 筛选状态：unpaid / paid / refunded / changed |
+| status | string | 否 | 筛选状态：unpaid / paid / refunded / changed / cancelled |
 | date | string | 否 | 筛选日期 yyyy-MM-dd |
 
 **成功响应（200）：**
@@ -662,7 +716,7 @@
             "toStation": "上海",
             "date": "2026-07-10",
             "seatType": "二等座",
-            "price": 553.0
+            "price": 546.0
         },
         "availableTrains": [
             {
@@ -672,8 +726,8 @@
                 "departureTime": "10:00",
                 "arrivalTime": "14:30",
                 "seatTypes": [
-                    { "type": "二等座", "price": 553.0, "remain": 35 },
-                    { "type": "一等座", "price": 933.0, "remain": 12 }
+                    { "type": "二等座", "price": 0.42, "remain": 35 },
+                    { "type": "一等座", "price": 0.72, "remain": 12 }
                 ],
                 "priceDiff": 0.0
             }
@@ -778,8 +832,9 @@ Token 采用 JWT HS256 签名，Payload 包含：
             "arrivalTime": "12:30",
             "duration": "4h30min",
             "date": "2026-07-10",
+            "totalDistanceKm": 1300,
             "seatTypes": [
-                { "type": "二等座", "price": 553.0, "remain": 120 }
+                { "type": "二等座", "price": 0.42, "remain": 120 }
             ]
         }
     ]
@@ -805,11 +860,11 @@ Token 采用 JWT HS256 签名，Payload 包含：
     "duration": "4h30min",
     "date": "2026-07-10",
     "stops": [
-        { "station": "北京", "arrive": "-", "depart": "08:00", "seq": 1 },
-        { "station": "上海", "arrive": "12:30", "depart": "-", "seq": 2 }
+        { "station": "北京", "arrive": "-", "depart": "08:00", "seq": 1, "distanceKm": 0 },
+        { "station": "上海", "arrive": "12:30", "depart": "-", "seq": 2, "distanceKm": 1300 }
     ],
     "seatTypes": [
-        { "type": "二等座", "price": 553.0, "remain": 120 }
+        { "type": "二等座", "price": 0.42, "remain": 120 }
     ]
 }
 ```
@@ -856,9 +911,7 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-### 站点管理
-
-#### 新增站点
+### 新增站点
 
 **方法/路径：** `POST /api/admin/stations`
 **认证：** 是（admin）
@@ -901,7 +954,7 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-#### 编辑站点
+### 编辑站点
 
 **方法/路径：** `PUT /api/admin/stations/{code}`
 **认证：** 是（admin）
@@ -916,7 +969,7 @@ Token 采用 JWT HS256 签名，Payload 包含：
 
 ---
 
-#### 删除站点
+### 删除站点
 
 **方法/路径：** `DELETE /api/admin/stations/{code}`
 **认证：** 是（admin）
@@ -928,7 +981,3 @@ Token 采用 JWT HS256 签名，Payload 包含：
 ```
 
 ---
-
-> **版本：** v1.2
-> **最后更新：** 2026-07-06
-> **前后端确认人签字：** ____________
