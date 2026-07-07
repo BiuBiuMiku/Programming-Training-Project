@@ -930,4 +930,41 @@ Token 采用 JWT HS256 签名，Payload 包含：
 **成功响应（200）：**
 
 ```json
-{ "code": 0, "message": "站
+{ "code": 0, "message": "站点添加成功", "data": null }
+```
+
+**失败示例：**
+
+```json
+{ "code": 40001, "message": "站点编码已存在", "data": null }
+```
+
+---
+
+#### 编辑站点
+
+**方法/路径：** `PUT /api/admin/stations/{code}`
+**认证：** 是（admin）
+
+**请求：** 同新增站点
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "站点更新成功", "data": null }
+```
+
+---
+
+#### 删除站点
+
+**方法/路径：** `DELETE /api/admin/stations/{code}`
+**认证：** 是（admin）
+
+**成功响应（200）：**
+
+```json
+{ "code": 0, "message": "站点删除成功", "data": null }
+```
+
+---
