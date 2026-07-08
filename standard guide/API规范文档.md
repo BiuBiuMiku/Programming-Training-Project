@@ -452,8 +452,12 @@
                         "toStation": "济南",
                         "departureTime": "08:00",
                         "arrivalTime": "09:30",
-                        "seatType": "二等座",
-                        "price": 195.0
+                        "distanceKm": 400,
+                        "seatTypes": [
+                            { "type": "二等座", "price": 168.0, "remain": 55 },
+                            { "type": "一等座", "price": 280.0, "remain": 23 },
+                            { "type": "商务座", "price": 504.0, "remain": 4 }
+                        ]
                     },
                     {
                         "trainNo": "G203",
@@ -461,8 +465,12 @@
                         "toStation": "上海",
                         "departureTime": "10:15",
                         "arrivalTime": "13:20",
-                        "seatType": "二等座",
-                        "price": 285.0
+                        "distanceKm": 900,
+                        "seatTypes": [
+                            { "type": "二等座", "price": 378.0, "remain": 120 },
+                            { "type": "一等座", "price": 630.0, "remain": 35 },
+                            { "type": "商务座", "price": 1260.0, "remain": 8 }
+                        ]
                     }
                 ]
             }
@@ -470,6 +478,17 @@
     }
 }
 ```
+
+| legs[n] 字段 | 类型 | 说明 |
+|--------------|------|------|
+| trainNo | string | 车次号 |
+| fromStation/toStation | string | 起止站名 |
+| departureTime/arrivalTime | string | 到发时间 HH:mm |
+| distanceKm | int | 该段距离（公里） |
+| seatTypes | array | 该段可售座位类型列表，每项含 type / price(该段总价) / remain |
+
+> **弃用字段：** `seatType` 和 `price`（leg 顶层）不再使用，由 `seatTypes` 替代。后端兼容期可继续返回，前端只读 `seatTypes`。
+> **totalPrice** 字段不再作为结算依据，前端根据每段选定的 seatTypes.price 累加计算。
 
 | transferRoutes[n] | 类型 | 说明 |
 |--------------------|------|------|
