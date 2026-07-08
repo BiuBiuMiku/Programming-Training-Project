@@ -5,7 +5,6 @@
              StartupUri="Views/LoginWindow.xaml">
 
     <Application.Resources>
-        <!-- 自定义转换器 -->
         <conv:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <conv:InvertBoolToVisibilityConverter x:Key="InvertBoolToVisibilityConverter"/>
