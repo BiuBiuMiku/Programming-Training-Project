@@ -1,0 +1,365 @@
+<Window x:Class="TTPFrontEnd.Views.TrainEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:TTPFrontEnd.ViewModels"
+        mc:Ignorable="d"
+        Title="{Binding Title}"
+        Width="900" Height="720"
+        MinWidth="780" MinHeight="600"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Border Background="White" CornerRadius="10"
+            BorderBrush="#E0E0E0" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="#20000000"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>   <!-- 标题栏 -->
+                <RowDefinition Height="*"/>      <!-- 滚动内容 -->
+                <RowDefinition Height="Auto"/>   <!-- 底部按钮 -->
+            </Grid.RowDefinitions>
+
+            <!-- ===== 标题栏 ===== -->
+            <Border Grid.Row="0" Background="#F8F9FB"
+                    BorderBrush="#E8E8E8" BorderThickness="0,0,0,1"
+                    Padding="16,10">
+                <Grid>
+                    <TextBlock Text="{Binding Title}" FontSize="17"
+                               FontWeight="Bold" Foreground="#333"
+                               VerticalAlignment="Center"/>
+                    <Button Content="✕" Width="36" Height="36"
+                            FontSize="14" Background="Transparent"
+                            BorderThickness="0" Foreground="#999"
+                            Cursor="Hand" HorizontalAlignment="Right"
+                            Click="CloseButton_Click"/>
+                </Grid>
+            </Border>
+
+            <!-- ===== 滚动内容 ===== -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                          Padding="20">
+                <StackPanel>
+
+                    <!-- 基本信息 -->
+                    <TextBlock Text="基本信息" FontSize="15" FontWeight="Bold"
+                               Foreground="#333" Margin="0,0,0,12"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="12"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="12"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Grid.Column="0">
+                            <TextBlock Text="车次号" FontSize="12" Foreground="#888" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding TrainNo, UpdateSourceTrigger=PropertyChanged}"
+                                     Height="34" FontSize="13" Padding="8,0"
+                                     VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="2">
+                            <TextBlock Text="历时" FontSize="12" Foreground="#888" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding Duration, UpdateSourceTrigger=PropertyChanged}"
+                                     Height="34" FontSize="13" Padding="8,0"
+                                     VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0">
+                            <TextBlock Text="出发站" FontSize="12" Foreground="#888" Margin="0,0,0,4"/>
+                            <ComboBox Text="{Binding FromStation, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding StationNames}"
+                                      IsEditable="True" Height="34" FontSize="13" Padding="8,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="2">
+                            <TextBlock Text="到达站" FontSize="12" Foreground="#888" Margin="0,0,0,4"/>
+                            <ComboBox Text="{Binding ToStation, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding StationNames}"
+                                      IsEditable="True" Height="34" FontSize="13" Padding="8,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="0">
+                            <TextBlock Text="出发时间 (HH:mm)" FontSize="12" Foreground="#888" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding DepartureTime, UpdateSourceTrigger=PropertyChanged}"
+                                     Height="34" FontSize="13" Padding="8,0"
+                                     VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="2">
+                            <TextBlock Text="到达时间 (HH:mm)" FontSize="12" Foreground="#888" Margin="0,0,0,4"/>
+                            <TextBox Text="{Binding ArrivalTime, UpdateSourceTrigger=PropertyChanged}"
+                                     Height="34" FontSize="13" Padding="8,0"
+                                     VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- 座位类型 -->
+                    <TextBlock Text="座位类型" FontSize="15" FontWeight="Bold"
+                               Foreground="#333" Margin="0,24,0,0"/>
+                    <Grid Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Content="+ 添加座位类型"
+                                Command="{Binding AddSeatTypeCommand}"
+                                FontSize="12" Foreground="#4A90D9"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand" Height="28"/>
+                    </Grid>
+
+                    <ListView ItemsSource="{Binding SeatTypes}"
+                              SelectedItem="{Binding SelectedSeatType}"
+                              BorderThickness="1" BorderBrush="#E8E8E8"
+                              Margin="0,4,0,0" MaxHeight="160">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="类型" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}"
+                                                     BorderThickness="0" FontSize="14" Padding="6,4"
+                                                     MinWidth="160"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="单价 (¥/km)" Width="160">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
+                                                     BorderThickness="0" FontSize="14" Padding="6,4"
+                                                     MinWidth="120"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="余票" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Remain, UpdateSourceTrigger=PropertyChanged}"
+                                                     BorderThickness="0" FontSize="14" Padding="6,4"
+                                                     MinWidth="60"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="✕"
+                                                    Command="{Binding DataContext.RemoveSeatTypeCommand,
+                                                    RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                    CommandParameter="{Binding}"
+                                                    FontSize="13" Foreground="#D93025"
+                                                    Background="Transparent" BorderThickness="0"
+                                                    Cursor="Hand"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- 经停站 -->
+                    <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
+                        <TextBlock Text="经停站" FontSize="15" FontWeight="Bold"
+                                   Foreground="#333"/>
+                        <TextBlock FontSize="12" Foreground="#999"
+                                   VerticalAlignment="Center" Margin="8,0,0,0">
+                            <Run Text="（共 "/><Run Text="{Binding Stops.Count, Mode=OneWay}"/>
+                            <Run Text=" 站）"/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- 工具栏 -->
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <Button Content="+ 添加经停站"
+                                Command="{Binding AddStopCommand}"
+                                FontSize="12" Foreground="#4A90D9"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand" Height="28" Margin="0,0,12,0"/>
+                        <Button Content="↑ 上移"
+                                Command="{Binding MoveStopUpCommand}"
+                                CommandParameter="{Binding SelectedStop}"
+                                FontSize="12" Foreground="#888"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand" Height="28" Margin="0,0,4,0"/>
+                        <Button Content="↓ 下移"
+                                Command="{Binding MoveStopDownCommand}"
+                                CommandParameter="{Binding SelectedStop}"
+                                FontSize="12" Foreground="#888"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand" Height="28"/>
+                    </StackPanel>
+
+                    <ListView ItemsSource="{Binding Stops}"
+                              SelectedItem="{Binding SelectedStop}"
+                              BorderThickness="1" BorderBrush="#E8E8E8"
+                              Margin="0,4,0,0" MaxHeight="220">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="站序" Width="45"
+                                                DisplayMemberBinding="{Binding Seq}"/>
+                                <GridViewColumn Header="站名" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Text="{Binding Station, UpdateSourceTrigger=PropertyChanged}"
+                                                      ItemsSource="{Binding DataContext.StationNames,
+                                                      RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                      IsEditable="True" BorderThickness="0"
+                                                      FontSize="14" Padding="6,2"
+                                                      MinWidth="160"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="到站" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Arrive, UpdateSourceTrigger=PropertyChanged}"
+                                                     BorderThickness="0" FontSize="14" Padding="6,4"
+                                                     MinWidth="70"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="发车" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Depart, UpdateSourceTrigger=PropertyChanged}"
+                                                     BorderThickness="0" FontSize="14" Padding="6,4"
+                                                     MinWidth="70"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="距离 (km)" Width="110">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#F0F4FF" CornerRadius="3"
+                                                    Padding="6,4" Margin="0,1">
+                                                <TextBlock FontSize="13" Foreground="#4A90D9"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding DistanceKm}" Value="0">
+                                                                    <Setter Property="Text" Value="—"/>
+                                                                    <Setter Property="Foreground" Value="#CCC"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                            <Setter Property="Text"
+                                                                    Value="{Binding DistanceKm, StringFormat={}{0} km}"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Border>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="✕"
+                                                    Command="{Binding DataContext.RemoveStopCommand,
+                                                    RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                    CommandParameter="{Binding}"
+                                                    FontSize="13" Foreground="#D93025"
+                                                    Background="Transparent" BorderThickness="0"
+                                                    Cursor="Hand"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- 错误提示 -->
+                    <Border Margin="0,12,0,0" Padding="10,8" CornerRadius="6"
+                            Background="#FFF3F3" BorderBrush="#FFD4D4" BorderThickness="1"
+                            Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}">
+                        <TextBlock Text="{Binding ErrorMessage}" FontSize="12"
+                                   Foreground="#D93025" TextWrapping="Wrap"/>
+                    </Border>
+
+                    <!-- 底部留白 -->
+                    <Border Height="12"/>
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- ===== 底部按钮 ===== -->
+            <Border Grid.Row="2" Background="#FAFAFA"
+                    BorderBrush="#E8E8E8" BorderThickness="0,1,0,0"
+                    Padding="16,10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="取 消"
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            Width="80" Height="34" FontSize="13" Foreground="#888"
+                            Background="#F0F0F0" BorderThickness="0"
+                            Cursor="Hand" Margin="0,0,12,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="4" BorderThickness="0">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Content="保 存"
+                            Command="{Binding SaveCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            Width="80" Height="34" FontSize="13" FontWeight="Bold"
+                            Foreground="White" Background="#4A90D9"
+                            BorderThickness="0" Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="4" BorderThickness="0">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#3A7BC8"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#B0C4DE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </Border>
+
+</Window>

@@ -34,12 +34,46 @@ public class TransferLeg
     public string ToStation { get; set; } = string.Empty;
     public string DepartureTime { get; set; } = string.Empty;
     public string ArrivalTime { get; set; } = string.Empty;
-    /// <summary>该段距离（公里）</summary>
-    public int DistanceKm { get; set; }
-    /// <summary>该段可选的座位类型列表（API 直接返回，含该段准确总价）</summary>
-    public List<SeatTypeInfo> SeatTypes { get; set; } = new();
     public string SeatType { get; set; } = string.Empty;
     public double Price { get; set; }
+    /// <summary>后端 API 可能返回此段距离（公里），0 表示未知</summary>
+    public int DistanceKm { get; set; }
+    /// <summary>该段可选的座位类型（由前端根据标准费率生成）</summary>
+    public List<SeatTypeInfo> SeatOptions { get; set; } = new();
+}
+
+/// <summary>
+/// 标准座位类型每公里费率（元/公里），用于中转段座位价格估算
+/// </summary>
+public static class SeatRate
+{
+    public static readonly Dictionary<string, double> Rates = new()
+    {
+        ["二等座"] = 0.40, ["一等座"] = 0.70, ["商务座"] = 1.35
+    };
+
+    public static double GetRate(string type)
+    {
+        foreach (var (k, v) in Rates)
+            if (type.Contains(k)) return v;
+        return 0.40; // 默认二等座
+    }
+
+    /// <summary>为一段行程生成可选座位类型列表（基于当前座位类型和价格反推）</summary>
+    public static List<SeatTypeInfo> GenerateOptions(TransferLeg leg)
+    {
+        var curRate = GetRate(leg.SeatType);
+        // 反推距离：如果 leg 有 DistanceKm 则用它，否则从价格反推
+        var dist = leg.DistanceKm > 0 ? leg.DistanceKm : (curRate > 0 ? leg.Price / curRate : 1000);
+        if (dist <= 0) dist = 500;
+
+        return new List<SeatTypeInfo>
+        {
+            new() { Type = "二等座", Price = System.Math.Round(Rates["二等座"] * dist, 0), Remain = 99 },
+            new() { Type = "一等座", Price = System.Math.Round(Rates["一等座"] * dist, 0), Remain = 99 },
+            new() { Type = "商务座", Price = System.Math.Round(Rates["商务座"] * dist, 0), Remain = 99 }
+        };
+    }
 }
 
 /// <summary>
@@ -236,7 +270,7 @@ public class RouteOption
     public string DisplayTrainNo { get; set; } = string.Empty;
     public string FromStation { get; set; } = string.Empty;
     public string ToStation { get; set; } = string.Empty;
-    /// <summary>出发时间 HH:mm</summary>
+    /// <summary>出发时间 HH:mm（用于排序）</summary>
     public string DepartureTime { get; set; } = string.Empty;
     /// <summary>到达时间 HH:mm</summary>
     public string ArrivalTime { get; set; } = string.Empty;

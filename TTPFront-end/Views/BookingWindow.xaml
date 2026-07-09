@@ -1,0 +1,592 @@
+<Window x:Class="TTPFrontEnd.Views.BookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="购票"
+        Width="520" Height="560"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Border Background="White" CornerRadius="10"
+            BorderBrush="#E0E0E0" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="#20000000"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 标题栏 -->
+            <Border Grid.Row="0" Background="#F8F9FB"
+                    BorderBrush="#E8E8E8" BorderThickness="0,0,0,1"
+                    Padding="16,10">
+                <Grid>
+                    <TextBlock Text="{Binding StepTitle}" FontSize="17"
+                               FontWeight="Bold" Foreground="#333"
+                               VerticalAlignment="Center"/>
+                    <Button Content="✕" Width="36" Height="36"
+                            FontSize="14" Background="Transparent"
+                            BorderThickness="0" Foreground="#999"
+                            Cursor="Hand" HorizontalAlignment="Right"
+                            Command="{Binding CancelCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                </Grid>
+            </Border>
+
+            <!-- 内容区 -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="24">
+                <Grid>
+                <!-- ====== 步骤1：填写信息 ====== -->
+                <StackPanel Visibility="{Binding OrderPlaced, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+
+                    <!-- 车次摘要（直达） -->
+                    <Border Background="#F0F4FF" CornerRadius="8" Padding="14,12"
+                            BorderBrush="#D0E0FF" BorderThickness="1" Margin="0,0,0,16"
+                            Visibility="{Binding IsTransfer, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="🚄" FontSize="28"
+                                       VerticalAlignment="Center" Margin="0,0,12,0"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock FontSize="15" FontWeight="Bold" Foreground="#333">
+                                    <Run Text="{Binding TrainNo, Mode=OneWay}"/>
+                                    <Run Text=" 次"/>
+                                </TextBlock>
+                                <TextBlock FontSize="13" Foreground="#555" Margin="0,3,0,0">
+                                    <Run Text="{Binding FromStation, Mode=OneWay}"/>
+                                    <Run Text=" → "/>
+                                    <Run Text="{Binding ToStation, Mode=OneWay}"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Date, Mode=OneWay}"
+                                           FontSize="12" Foreground="#999" Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- 车次摘要（中转） -->
+                    <Border Background="#FFF8ED" CornerRadius="8" Padding="14,12"
+                            BorderBrush="#FFE8C0" BorderThickness="1" Margin="0,0,0,16"
+                            Visibility="{Binding IsTransfer, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <StackPanel>
+                            <TextBlock Text="🔄 中转购票" FontSize="15" FontWeight="Bold"
+                                       Foreground="#E67E22" Margin="0,0,0,8"/>
+                            <TextBlock Text="{Binding TransferInfo, Mode=OneWay}"
+                                       FontSize="12" Foreground="#888" Margin="0,0,0,6"/>
+                            <TextBlock Text="{Binding Date, Mode=OneWay}"
+                                       FontSize="12" Foreground="#999"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 中转：每段行程选座 -->
+                    <StackPanel Visibility="{Binding IsTransfer, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="每段行程选择座位" FontSize="14" FontWeight="Bold"
+                                   Foreground="#333" Margin="0,0,0,10"/>
+                        <ItemsControl ItemsSource="{Binding TransferLegOptions}" Margin="0,0,0,16">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="0" Margin="0,0,0,12"
+                                            CornerRadius="8" BorderBrush="#E8E8E8"
+                                            BorderThickness="1" Background="#FAFAFA">
+                                        <StackPanel>
+                                            <!-- 段标题 -->
+                                            <Border Padding="12,8" CornerRadius="8,8,0,0"
+                                                    Background="#FFF8ED"
+                                                    BorderBrush="#FFE8C0" BorderThickness="0,0,0,1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="🚄" FontSize="18"
+                                                               VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                        <TextBlock FontSize="13" FontWeight="Bold" Foreground="#333">
+                                                            <Run Text="{Binding Leg.TrainNo, Mode=OneWay}" Foreground="#E67E22"/>
+                                                            <Run Text=" 次" Foreground="#555"/>
+                                                        </TextBlock>
+                                                        <TextBlock FontSize="12" Foreground="#555" Margin="0,2,0,0">
+                                                            <Run Text="{Binding Leg.FromStation, Mode=OneWay}"/>
+                                                            <Run Text=" → "/>
+                                                            <Run Text="{Binding Leg.ToStation, Mode=OneWay}"/>
+                                                        </TextBlock>
+                                                        <TextBlock FontSize="11" Foreground="#999">
+                                                            <Run Text="{Binding Leg.DepartureTime, Mode=OneWay}"/>
+                                                            <Run Text=" → "/>
+                                                            <Run Text="{Binding Leg.ArrivalTime, Mode=OneWay}"/>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                    <TextBlock Grid.Column="2" FontSize="13" FontWeight="Bold"
+                                                               Foreground="#E67E22" VerticalAlignment="Center">
+                                                        <Run Text="¥"/>
+                                                        <Run Text="{Binding SelectedSeatType.Price, StringFormat={}{0:F0}, FallbackValue=?, Mode=OneWay}"/>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+
+                                            <!-- 段座位选择 -->
+                                            <ItemsControl ItemsSource="{Binding SeatTypes}" Margin="8,6">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Padding="8,6" Margin="0,0,0,4"
+                                                                CornerRadius="4" Cursor="Hand"
+                                                                MouseLeftButtonDown="TransferSeatType_Click"
+                                                                Tag="{Binding}">
+                                                            <Border.Style>
+                                                                <Style TargetType="Border">
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                                                                    <Setter Property="BorderThickness" Value="1"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Value="True">
+                                                                            <DataTrigger.Binding>
+                                                                                <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                                                                    <Binding Path=""/>
+                                                                                    <Binding Path="SelectedSeatType" RelativeSource="{RelativeSource AncestorType=ContentPresenter, AncestorLevel=2}"/>
+                                                                                </MultiBinding>
+                                                                            </DataTrigger.Binding>
+                                                                            <Setter Property="Background" Value="#F0F4FF"/>
+                                                                            <Setter Property="BorderBrush" Value="#4A90D9"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                                    <TextBlock Text="{Binding Type}" FontSize="12"
+                                                                               FontWeight="Bold" Foreground="#333"/>
+                                                                    <TextBlock FontSize="11" Foreground="#E67E22">
+                                                                        <Run Text="¥"/>
+                                                                        <Run Text="{Binding Price, StringFormat={}{0:F0}, Mode=OneWay}"/>
+                                                                    </TextBlock>
+                                                                </StackPanel>
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- 座位类型（仅直达） -->
+                    <StackPanel Visibility="{Binding IsTransfer, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+                        <TextBlock Text="座位类型" FontSize="13" Foreground="#555" Margin="0,0,0,6"/>
+                        <ItemsControl ItemsSource="{Binding SeatTypes}" Margin="0,0,0,16">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Padding="10,8" Margin="0,0,0,6"
+                                            CornerRadius="6" Cursor="Hand"
+                                            MouseLeftButtonDown="SeatType_Click"
+                                            Tag="{Binding}">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Background" Value="#F8F9FB"/>
+                                                <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                                                <Setter Property="BorderThickness" Value="1"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                                                <Binding Path="."/>
+                                                                <Binding Path="DataContext.SelectedSeatType" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                                                            </MultiBinding>
+                                                        </DataTrigger.Binding>
+                                                        <Setter Property="Background" Value="#F0F4FF"/>
+                                                        <Setter Property="BorderBrush" Value="#4A90D9"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Type}" FontSize="14"
+                                                           FontWeight="Bold" Foreground="#333"/>
+                                                <TextBlock FontSize="11" Foreground="#999" Margin="0,2,0,0">
+                                                    <Run Text="¥"/>
+                                                    <Run Text="{Binding Price, StringFormat={}{0:F2}, Mode=OneWay}"/>
+                                                    <Run Text=" /公里"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <Border Grid.Column="1" VerticalAlignment="Center"
+                                                    Background="#E8F5E9" CornerRadius="4"
+                                                    Padding="6,2" Margin="8,0">
+                                                <TextBlock FontSize="11" Foreground="#2E7D32">
+                                                    <Run Text="余"/>
+                                                    <Run Text="{Binding Remain, Mode=OneWay}"/>
+                                                    <Run Text="张"/>
+                                                </TextBlock>
+                                            </Border>
+                                            <TextBlock Grid.Column="2" Text="✓" FontSize="16"
+                                                       Foreground="#4A90D9" FontWeight="Bold"
+                                                       VerticalAlignment="Center" Margin="4,0,0,0">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Value="True">
+                                                                <DataTrigger.Binding>
+                                                                    <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                                                        <Binding Path="."/>
+                                                                        <Binding Path="DataContext.SelectedSeatType" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                                                                    </MultiBinding>
+                                                                </DataTrigger.Binding>
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- 票价 -->
+                    <Border Background="#FFF8ED" CornerRadius="6"
+                            Padding="12,8" Margin="0,0,0,16"
+                            BorderBrush="#FFE8C0" BorderThickness="1">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="单人票价：" FontSize="13" Foreground="#555"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding PriceDisplay}"
+                                           FontSize="18" FontWeight="Bold"
+                                           Foreground="#E67E22"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding DistanceInfo}" FontSize="11"
+                                       Foreground="#999" Margin="0,2,0,0"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                <TextBlock Text="已选 " FontSize="12" Foreground="#888"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding SelectedCount}" FontSize="13"
+                                           FontWeight="Bold" Foreground="#333"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Text=" 人，合计 " FontSize="12" Foreground="#888"
+                                           VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotalPriceDisplay}" FontSize="15"
+                                           FontWeight="Bold" Foreground="#E67E22"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 选择乘客 -->
+                    <TextBlock Text="选择乘客" FontSize="14" FontWeight="Bold"
+                               Foreground="#333" Margin="0,0,0,4"/>
+                    <TextBlock FontSize="12" Foreground="#999" Margin="0,0,0,10"
+                               TextWrapping="Wrap">
+                        <Run Text="勾选需要购票的乘客。如无可选乘客，请先在「个人中心」添加。"/>
+                    </TextBlock>
+
+                    <!-- 已保存乘客列表 -->
+                    <ItemsControl ItemsSource="{Binding PassengerOptions}"
+                                  Visibility="{Binding HasSavedPassengers, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="0,0,0,6" Padding="10,8"
+                                        CornerRadius="6" Cursor="Hand"
+                                        MouseLeftButtonDown="PassengerCheck_Click"
+                                        Tag="{Binding}">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#F8F9FB"/>
+                                            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background" Value="#F0F4FF"/>
+                                                    <Setter Property="BorderBrush" Value="#4A90D9"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- 勾选框 -->
+                                        <Border Grid.Column="0" Width="22" Height="22"
+                                                CornerRadius="4" BorderThickness="1"
+                                                VerticalAlignment="Center" Margin="0,0,10,0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#C0C0C0"/>
+                                                    <Setter Property="Background" Value="White"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#4A90D9"/>
+                                                            <Setter Property="Background" Value="#4A90D9"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <TextBlock Text="✓" FontSize="13"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Border>
+
+                                        <!-- 乘客信息 -->
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Passenger.RealName}"
+                                                       FontSize="14" FontWeight="Bold"
+                                                       Foreground="#333"/>
+                                            <TextBlock Text="{Binding Passenger.IdCard}"
+                                                       FontSize="12" Foreground="#999"
+                                                       Margin="0,2,0,0"/>
+                                        </StackPanel>
+
+                                        <!-- 手机 -->
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Passenger.Phone}"
+                                                   FontSize="11" Foreground="#BBB"
+                                                   VerticalAlignment="Center"
+                                                   Margin="12,0,0,0"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- 没有已保存乘客 -->
+                    <Border Padding="16,14" CornerRadius="6"
+                            Background="#FFF8ED" BorderBrush="#FFE8C0"
+                            BorderThickness="1"
+                            Visibility="{Binding HasSavedPassengers, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+                        <StackPanel>
+                            <TextBlock Text="暂无已保存的乘客身份" FontSize="13"
+                                       Foreground="#E67E22" FontWeight="Bold"/>
+                            <TextBlock FontSize="12" Foreground="#999"
+                                       Margin="0,4,0,0" TextWrapping="Wrap">
+                                请先前往「个人中心」页面添加乘客身份信息，然后返回此页面购票。
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 错误 -->
+                    <Border Margin="0,12,0,0" Padding="10,8" CornerRadius="6"
+                            Background="#FFF3F3" BorderBrush="#FFD4D4" BorderThickness="1"
+                            Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}">
+                        <TextBlock Text="{Binding ErrorMessage}" FontSize="12"
+                                   Foreground="#D93025" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- ====== 步骤2：订单已生成 ====== -->
+                <StackPanel Visibility="{Binding OrderPlaced, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                    <StackPanel Visibility="{Binding PaymentDone, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+                        <Border Background="#F0FFF0" CornerRadius="8"
+                                Padding="16" BorderBrush="#C8E6C9" BorderThickness="1"
+                                Margin="0,0,0,16">
+                            <StackPanel>
+                                <TextBlock Text="✅" FontSize="32" HorizontalAlignment="Center"/>
+                                <TextBlock Text="订单已生成" FontSize="18" FontWeight="Bold"
+                                           Foreground="#2E7D32" HorizontalAlignment="Center"
+                                           Margin="0,8,0,0"/>
+                                <TextBlock FontSize="13" Foreground="#555"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Run Text="订单号："/>
+                                    <Run Text="{Binding OrderId, Mode=OneWay}" FontWeight="Bold"/>
+                                </TextBlock>
+                                <TextBlock FontSize="13" Foreground="#555"
+                                           HorizontalAlignment="Center" Margin="0,4,0,0">
+                                    <Run Text="应付金额：¥"/>
+                                    <Run Text="{Binding TotalPrice, StringFormat={}{0:F2}, Mode=OneWay}"
+                                         FontWeight="Bold" Foreground="#E67E22" FontSize="16"/>
+                                </TextBlock>
+                                <TextBlock Text="请在15分钟内完成支付"
+                                           FontSize="12" Foreground="#E67E22"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Visibility="{Binding PaymentDone, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Border Background="#F0FFF0" CornerRadius="8"
+                                Padding="20" BorderBrush="#C8E6C9" BorderThickness="1"
+                                Margin="0,0,0,16">
+                            <StackPanel>
+                                <TextBlock Text="🎉" FontSize="40" HorizontalAlignment="Center"/>
+                                <TextBlock Text="支付成功！" FontSize="20" FontWeight="Bold"
+                                           Foreground="#2E7D32" HorizontalAlignment="Center"
+                                           Margin="0,8,0,0"/>
+                                <TextBlock FontSize="13" Foreground="#555"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0">
+                                    <Run Text="订单号："/>
+                                    <Run Text="{Binding OrderId, Mode=OneWay}" FontWeight="Bold"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <Border Margin="0,0,0,12" Padding="10,8" CornerRadius="6"
+                            Background="#FFF3F3" BorderBrush="#FFD4D4" BorderThickness="1"
+                            Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}">
+                        <TextBlock Text="{Binding ErrorMessage}" FontSize="12"
+                                   Foreground="#D93025" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+                </Grid>
+            </ScrollViewer>
+
+            <!-- 底部按钮 -->
+            <Border Grid.Row="2" Background="#FAFAFA"
+                    BorderBrush="#E8E8E8" BorderThickness="0,1,0,0"
+                    Padding="16,10">
+                <Grid>
+                <Button Content="提交订单"
+                        Command="{Binding PlaceOrderCommand}"
+                        Width="120" Height="36" FontSize="14" FontWeight="Bold"
+                        Foreground="White" Cursor="Hand"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding OrderPlaced, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#4A90D9"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="4" BorderThickness="0">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#3A7BC8"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#B0C4DE"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <StackPanel HorizontalAlignment="Center"
+                            Visibility="{Binding OrderPlaced, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                Visibility="{Binding PaymentDone, Converter={StaticResource InvertBoolToVisibilityConverter}}">
+                        <Button Content="去支付"
+                                Command="{Binding PayCommand}"
+                                Width="100" Height="36" FontSize="14" FontWeight="Bold"
+                                Foreground="White" Cursor="Hand" Margin="0,0,12,0">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#E67E22"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="4" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Content="稍后支付"
+                                Command="{Binding CloseCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                                FontSize="13" Foreground="#999"
+                                Background="#F0F0F0" BorderThickness="0"
+                                Cursor="Hand" Width="90" Height="36">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="4" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+
+                    <Button Content="完  成"
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            Width="100" Height="36" FontSize="14" FontWeight="Bold"
+                            Foreground="White" Cursor="Hand"
+                            Visibility="{Binding PaymentDone, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#4A90D9"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    CornerRadius="4" BorderThickness="0">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
