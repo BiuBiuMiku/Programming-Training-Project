@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "TicketService/TicketService.h"
 
@@ -36,6 +36,11 @@ private:
 
     HttpRequest ParseRequest(const std::string& raw) const;
     HttpResponse Route(const HttpRequest& request);
+    HttpResponse HandleGet(const HttpRequest& request);
+    HttpResponse HandlePost(const HttpRequest& request);
+    HttpResponse HandlePut(const HttpRequest& request);
+    HttpResponse HandleDelete(const HttpRequest& request);
+    HttpResponse HandlePush(const HttpRequest& request);
 
     HttpResponse Ok(const std::string& body) const;
     HttpResponse Created(const std::string& body) const;
@@ -45,3 +50,4 @@ private:
     void LogRequest(const HttpRequest& request, unsigned long long requestId, std::size_t rawBytes) const;
     void LogResponse(const HttpRequest& request, const HttpResponse& response, unsigned long long requestId, long long durationMs) const;
 };
+
