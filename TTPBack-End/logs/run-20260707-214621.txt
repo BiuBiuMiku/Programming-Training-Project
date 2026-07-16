@@ -1,0 +1,15 @@
+[2026-07-07 21:46:21] logger initialized
+[2026-07-07 21:46:21] backend process started
+[2026-07-07 21:46:21] listening on http://localhost:8080
+[2026-07-07 21:46:22] request POST /api/auth/login body={"username":"user","password":"wrong"}
+[2026-07-07 21:46:22] response 200 OK for POST /api/auth/login body={"code":40101,"message":"invalid username or password","data":null}
+[2026-07-07 21:46:22] request POST /api/auth/login body={"username":"user","password":"1111"}
+[2026-07-07 21:46:22] response 200 OK for POST /api/auth/login body={"code":0,"message":"login success","data":{"token":"mock-backend-token-user","username":"user","role":"user"},"token":"mock-backend-token-user","username":"user","role":"user"}
+[2026-07-07 21:46:22] request POST /api/auth/register body={"phone":"13980044015","code":"888888","password":"abcdef"}
+[2026-07-07 21:46:22] response 201 Created for POST /api/auth/register body={"code":0,"message":"register success","data":{"token":"mock-register-token-13980044015","phone":"13980044015"},"token":"mock-register-token-13980044015","phone":"13980044015"}
+[2026-07-07 21:46:22] request POST /api/auth/login body={"username":"13980044015","password":"badbad"}
+[2026-07-07 21:46:22] response 200 OK for POST /api/auth/login body={"code":40101,"message":"invalid username or password","data":null}
+[2026-07-07 21:46:22] request POST /api/auth/login body={"username":"13980044015","password":"abcdef"}
+[2026-07-07 21:46:22] response 200 OK for POST /api/auth/login body={"code":0,"message":"login success","data":{"token":"mock-backend-token-13980044015","username":"13980044015","role":"user"},"token":"mock-backend-token-13980044015","username":"13980044015","role":"user"}
+[2026-07-07 21:46:22] request POST /api/orders body={"trainNo":"G100","date":"2026-07-10","fromStation":"??","toStation":"??","seatType":"???","passengers":[{"realName":"Test","idCard":"110101199001011234"}]}
+[2026-07-07 21:46:22] response 201 Created for POST /api/orders body={"code":0,"message":"order created","data":{"orderId":"202607101007","username":"user","trainNo":"G100","date":"2026-07-10","fromStation":"??","toStation":"??","seatType":"???","totalPrice":532,"passengers":[{"realName":"Test","idCard":"110101199001011234","seatNo":"05A"}],"status":"unpaid","created...(truncated)

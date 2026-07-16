@@ -1,0 +1,4 @@
+[2026-07-08 21:37:44] [INFO] logger initialized
+[2026-07-08 21:37:44] [INFO] backend process started
+[2026-07-08 21:37:44] [INFO] listening on http://localhost:8080
+[2026-07-08 21:37:44] [INFO] bind failed on port 8080

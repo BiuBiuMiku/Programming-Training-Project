@@ -1,0 +1,7 @@
+[2026-07-14 15:14:09] [INFO] logger initialized
+[2026-07-14 15:14:09] [INFO] backend process started
+[2026-07-14 15:14:09] [INFO] listening on http://localhost:8080
+[2026-07-14 15:14:10] [INFO] REQUEST id=1 method=GET path=/api/tickets/transfer endpoint=tickets.transfer query={date=2026-07-20, from=MIG, to=CDW} rawBytes=211 body=<empty>
+[2026-07-14 15:14:10] [INFO] ROUTE id=1 endpoint=tickets.transfer
+[2026-07-14 15:14:10] [INFO] Dijkstra transfer from=绵阳 to=成都 outgoingEdges=10 pathEdges=2
+[2026-07-14 15:14:10] [INFO] RESPONSE id=1 method=GET path=/api/tickets/transfer endpoint=tickets.transfer http=200 OK durationMs=0 bytes=829 appCode=0 appMessage="ok" trainItems=2 body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"algorithm":"dijkstra","totalDuration":"6h30min","totalPrice":528.00,"transferStation":"西安","legs":[{"trainNo":"G2100","fromStation":"绵阳","toStation":"西安","departureTime":"08:07","arrivalTime":"10:37","seatType":"二等座","price":264.00,"distanceKm":660,"seatOptions":[{"type":"二等座","price":264.00,"remain":142},{"type":"一等座","price":462.00,"remain":44},{"type":"商务座","price":891.00,"remain":12}]},{"trainNo":"G400","fromStation":"西安","toStation":"成都","departureTime":"12:12","arrivalTime":"14:37","seatType":"二等座","price":264.00,"distanceKm":660,"seatOptions":[{"type":"二等座","price":264.00,"remain":142},{"type":"一等座","price":462.00,"remain":44},{"type":"商务座","price":891.00,"remain":12}]}]}]}}

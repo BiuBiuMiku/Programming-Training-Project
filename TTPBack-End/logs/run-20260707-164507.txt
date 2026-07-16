@@ -1,0 +1,5 @@
+[2026-07-07 16:45:07] logger initialized
+[2026-07-07 16:45:07] backend process started
+[2026-07-07 16:45:07] listening on http://localhost:8080
+[2026-07-07 16:45:08] request GET /api/tickets/transfer?from=BJP&to=SHH&date=2026-07-10
+[2026-07-07 16:45:08] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[{"trainNo":"G100","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","minPrice":532,"totalDistanceKm":1330},{"trainNo":"G101","departureTime":"07:25","arrivalTime":"12:14","duration":"4h49min","minPrice":545.3,"totalDistanceKm":1330},{...(truncated)

@@ -1,0 +1,7 @@
+[2026-07-15 14:45:41] [INFO] logger initialized
+[2026-07-15 14:45:41] [INFO] backend process started
+[2026-07-15 14:45:41] [INFO] listening on http://localhost:8080
+[2026-07-15 14:45:43] [INFO] REQUEST id=1 method=GET path=/api/tickets/transfer endpoint=tickets.transfer query={date=2026-07-15, from=北京, to=上海} rawBytes=241 body=<empty>
+[2026-07-15 14:45:43] [INFO] ROUTE id=1 endpoint=tickets.transfer
+[2026-07-15 14:45:43] [INFO] Dijkstra transfer from=北京 to=上海 outgoingEdges=80 pathEdges=3
+[2026-07-15 14:45:43] [INFO] RESPONSE id=1 method=GET path=/api/tickets/transfer endpoint=tickets.transfer http=200 OK durationMs=10 bytes=5092 appCode=0 appMessage="ok" trainItems=14 body={"code":0,"message":"ok","data":{"directTrains":[{"trainNo":"G103","departureTime":"08:55","arrivalTime":"13:37","duration":"4h42min","minPrice":532.00,"seatTypes":[{"type":"二等座","price":532.00,"remain":130},{"type":"一等座","price":957.60,"remain":41},{"type":"商务座","price":1795.50,"remain":11}],"totalDistanceKm":1330},{"trainNo":"G100","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","minPrice":532.00,"seatTypes":[{"type":"二等座","price":532.00,"remain":142},{"type":"一等座","price":931.00,"remain":44},{"type":"商务座","price":1795.50,"remain":12}],"totalDistanceKm":1330},{"trainNo":"G106","departureTime":"11:10","arrivalTime":"15:54","duration":"4h44min","minPrice":532.00,"seatTypes":[{"type":"二等座","price":532.00,"remain":118},{"type":"一等座","price":931.00,"remain":38},{"type":"商务座","price":1795.50,"remain":9}],"totalDistanceK...(truncated)

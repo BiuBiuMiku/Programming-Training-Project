@@ -1,10 +1,12 @@
-﻿#include "ApiService/ApiService.h"
+﻿// 文件说明：程序入口：初始化日志、业务服务和 HTTP 服务器。
+
+#include "ApiService/ApiService.h"
 #include "Logger.h"
 
 #include <iostream>
 
-int main()
-{
+int main() {
+    // 初始化日志后，创建业务服务并启动 HTTP 接口。
     Logger::Initialize();
 
     TicketService ticketService;

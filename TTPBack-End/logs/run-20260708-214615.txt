@@ -1,0 +1,28 @@
+[2026-07-08 21:46:15] [INFO] logger initialized
+[2026-07-08 21:46:15] [INFO] backend process started
+[2026-07-08 21:46:15] [INFO] listening on http://localhost:8080
+[2026-07-08 21:46:16] [INFO] REQUEST id=1 method=POST path=/api/orders endpoint=orders.create query={} rawBytes=786 body={
+    "fromStation":  "成都",
+    "passengers":  [
+                       {
+                           "idCard":  "***",
+                           "realName":  "多人测试甲"
+                       },
+                       {
+                           "idCard":  "***",
+                           "realName":  "多人测试乙"
+                       }
+                   ],
+    "seatType":  "二等座",
+    "toStation":  "德阳",
+    "trainNo":  "G2102",
+    "date":  "2026-07-08"
+}
+[2026-07-08 21:46:16] [INFO] ROUTE id=1 endpoint=orders.create
+[2026-07-08 21:46:16] [INFO] RESPONSE id=1 method=POST path=/api/orders endpoint=orders.create http=201 Created durationMs=5 bytes=381 appCode=0 appMessage="order created" trainItems=1 orderItems=1 body={"code":0,"message":"order created","data":{"orderId":"202607101002","username":"user","trainNo":"G2102","date":"2026-07-08","fromStation":"成都","toStation":"德阳","seatType":"二等座","totalPrice":50.4,"passengers":[{"realName":"多人测试甲","idCard":"TESTMULTI001","seatNo":"05A"}],"status":"unpaid","createdAt":"2026-07-06T14:30:00","expireAt":"2026-07-06T14:45:00"}}
+[2026-07-08 21:46:16] [INFO] REQUEST id=2 method=POST path=/api/orders/202607101002/pay endpoint=orders.action query={} rawBytes=231 body=<empty>
+[2026-07-08 21:46:16] [INFO] ROUTE id=2 endpoint=orders.action
+[2026-07-08 21:46:16] [INFO] RESPONSE id=2 method=POST path=/api/orders/202607101002/pay endpoint=orders.action http=200 OK durationMs=2 bytes=98 appCode=0 appMessage="pay success" orderItems=1 body={"code":0,"message":"pay success","data":{"orderId":"202607101002","status":"paid","paidCount":2}}
+[2026-07-08 21:46:16] [INFO] REQUEST id=3 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=145 body=<empty>
+[2026-07-08 21:46:16] [INFO] ROUTE id=3 endpoint=orders.list
+[2026-07-08 21:46:16] [INFO] RESPONSE id=3 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=0 bytes=518 appCode=0 appMessage="ok" trainItems=2 orderItems=2 body={"code":0,"message":"ok","data":[{"orderId":"202607101002","username":"user","trainNo":"G2102","date":"2026-07-08","fromStation":"成都","toStation":"德阳","departureTime":"08:00","seatType":"二等座","totalPrice":25.2,"status":"paid","createdAt":"2026-07-06T14:30:00"},{"orderId":"202607101003","username":"user","trainNo":"G2102","date":"2026-07-08","fromStation":"成都","toStation":"德阳","departureTime":"08:00","seatType":"二等座","totalPrice":25.2,"status":"paid","createdAt":"2026-07-06T14:30:00"}]}

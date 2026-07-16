@@ -1,0 +1,11 @@
+[2026-07-07 16:49:24] logger initialized
+[2026-07-07 16:49:24] backend process started
+[2026-07-07 16:49:24] listening on http://localhost:8080
+[2026-07-07 16:49:38] request GET /api/stations
+[2026-07-07 16:49:38] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 16:49:42] request GET /api/tickets/transfer?from=SJZ&to=TJP&date=2026-07-07
+[2026-07-07 16:49:42] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 16:49:42] request GET /api/trains?from=SJZ&to=TJP&date=2026-07-07
+[2026-07-07 16:49:42] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 16:49:45] request GET /api/orders
+[2026-07-07 16:49:45] response 200 OK for GET /api/orders body={"code":0,"message":"ok","data":[{"orderId":"202607101000","username":"user","trainNo":"G302","date":"2026-07-07","fromStation":"u5E7Fu5DDE","toStation":"u4E0Au6D77","departureTime":"08:00","seatType":"u4E8Cu7B49u5EA7","totalPrice":0,"status":"refunded","createdAt":"2026-07-06T14:30:00"},{"orderId":...(truncated)

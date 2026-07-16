@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0BD7BD14-EC82-36BF-B20D-8D0D8C153136}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>TrainTicketBackEnd</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TrainTicketBackEnd.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TrainTicketBackEnd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TrainTicketBackEnd.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TrainTicketBackEnd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">TrainTicketBackEnd.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">TrainTicketBackEnd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">TrainTicketBackEnd.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">TrainTicketBackEnd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <ConformanceMode>true</ConformanceMode>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/Debug/TrainTicketBackEnd.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/Debug/TrainTicketBackEnd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/Release/TrainTicketBackEnd.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/Release/TrainTicketBackEnd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ConformanceMode>true</ConformanceMode>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/MinSizeRel/TrainTicketBackEnd.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/MinSizeRel/TrainTicketBackEnd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /utf-8</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ConformanceMode>true</ConformanceMode>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;NOMINMAX;WIN32_LEAN_AND_MEAN;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/RelWithDebInfo/TrainTicketBackEnd.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/RelWithDebInfo/TrainTicketBackEnd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end -BC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build --check-stamp-file C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end -BC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build --check-stamp-file C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end -BC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build --check-stamp-file C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end -BC:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build --check-stamp-file C:/Users/jesst/Desktop/编程实训/墨染的project/TrainTicketProject/Back-end/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Qt\Tools\CMake_64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\3.30.5\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\main.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\Logger.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\ApiService.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Get.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Post.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Put.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Delete.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Push.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\TicketService.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Query.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Auth.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Order.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Refund.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Admin.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Json.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Route.cpp" />
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Graph.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\ZERO_CHECK.vcxproj">
+      <Project>{5B75B446-7DAB-346B-9ECD-8C79EFB8F6A3}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,5 @@
+[2026-07-07 21:48:19] logger initialized
+[2026-07-07 21:48:19] backend process started
+[2026-07-07 21:48:19] listening on http://localhost:8080
+[2026-07-07 21:48:20] request POST /api/auth/login body={"username":"user","password":"wrong"}
+[2026-07-07 21:48:20] response 401 Unauthorized for POST /api/auth/login body={"code":40101,"message":"invalid username or password","data":null}

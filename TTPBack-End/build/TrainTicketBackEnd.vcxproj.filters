@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\ApiService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Get.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Post.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Put.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Delete.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\ApiService\methods\Push.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\TicketService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Query.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Auth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Refund.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Json.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Route.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\ssr\TicketService\modules\Graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{291D9203-2F05-3D5D-A7EB-C388F90EA7AA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

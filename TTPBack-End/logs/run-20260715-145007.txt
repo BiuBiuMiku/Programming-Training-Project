@@ -1,0 +1,6 @@
+[2026-07-15 14:50:07] [INFO] logger initialized
+[2026-07-15 14:50:07] [INFO] backend process started
+[2026-07-15 14:50:07] [INFO] listening on http://localhost:8080
+[2026-07-15 14:50:09] [INFO] REQUEST id=1 method=GET path=/api/orders/202607101027/refund-fee endpoint=orders.action query={} rawBytes=193 body=<empty>
+[2026-07-15 14:50:09] [INFO] ROUTE id=1 endpoint=orders.action
+[2026-07-15 14:50:09] [WARN] RESPONSE id=1 method=GET path=/api/orders/202607101027/refund-fee endpoint=orders.action http=200 OK durationMs=0 bytes=54 appCode=40401 appMessage="order not found" body={"code":40401,"message":"order not found","data":null} warnings=business-code-nonzero

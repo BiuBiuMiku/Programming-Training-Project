@@ -1,0 +1,55 @@
+[2026-07-07 21:50:22] logger initialized
+[2026-07-07 21:50:22] backend process started
+[2026-07-07 21:50:22] listening on http://localhost:8080
+[2026-07-07 21:50:35] request POST /api/auth/login body=2A
+{"username":"user","password":"123123123"}
+0
+
+
+[2026-07-07 21:50:35] response 401 Unauthorized for POST /api/auth/login body={"code":40101,"message":"invalid username or password","data":null}
+[2026-07-07 21:50:38] request POST /api/auth/login body=24
+{"username":"user","password":"111"}
+0
+
+
+[2026-07-07 21:50:38] response 401 Unauthorized for POST /api/auth/login body={"code":40101,"message":"invalid username or password","data":null}
+[2026-07-07 21:50:40] request GET /api/stations
+[2026-07-07 21:50:40] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 21:50:42] request GET /api/orders
+[2026-07-07 21:50:42] response 200 OK for GET /api/orders body={"code":0,"message":"ok","data":[{"orderId":"202607101000","username":"user","trainNo":"G302","date":"2026-07-07","fromStation":"u5E7Fu5DDE","toStation":"u4E0Au6D77","departureTime":"08:00","seatType":"u4E8Cu7B49u5EA7","totalPrice":0,"status":"refunded","createdAt":"2026-07-06T14:30:00"},{"orderId":...(truncated)
+[2026-07-07 21:50:46] request GET /api/orders
+[2026-07-07 21:50:46] response 200 OK for GET /api/orders body={"code":0,"message":"ok","data":[{"orderId":"202607101000","username":"user","trainNo":"G302","date":"2026-07-07","fromStation":"u5E7Fu5DDE","toStation":"u4E0Au6D77","departureTime":"08:00","seatType":"u4E8Cu7B49u5EA7","totalPrice":0,"status":"refunded","createdAt":"2026-07-06T14:30:00"},{"orderId":...(truncated)
+[2026-07-07 21:52:17] request POST /api/auth/login body=2C
+{"username":"13980044015","password":"1111"}
+0
+
+
+[2026-07-07 21:52:17] response 200 OK for POST /api/auth/login body={"code":0,"message":"login success","data":{"token":"mock-backend-token-13980044015","username":"13980044015","role":"13980044015"},"token":"mock-backend-token-13980044015","username":"13980044015","role":"13980044015"}
+[2026-07-07 21:52:17] request GET /api/stations
+[2026-07-07 21:52:17] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 21:54:36] request GET /api/tickets/transfer?from=NNZ&to=CDW&date=2026-07-08
+[2026-07-07 21:54:38] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"11h30min","totalPrice":909.60,"transferStation":"武汉","legs":[{"trainNo":"D2800","fromStation":"南宁","toStation":"武汉","departureTime":"08:45","arrivalTime":"15:23","seatType":"二等座","price":425.60},...(truncated)
+[2026-07-07 21:54:38] request GET /api/trains?from=NNZ&to=CDW&date=2026-07-08
+[2026-07-07 21:54:38] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 21:55:45] request GET /api/stations
+[2026-07-07 21:55:45] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 21:56:02] request GET /api/trains?from=CDW&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:02] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 21:56:02] request GET /api/tickets/transfer?from=CDW&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:05] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[]}}
+[2026-07-07 21:56:07] request GET /api/tickets/transfer?from=CDW&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:09] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[]}}
+[2026-07-07 21:56:09] request GET /api/trains?from=CDW&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:09] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 21:56:16] request GET /api/trains?from=CAN&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:16] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[{"trainNo":"D1600","fromStation":"广州","toStation":"南宁","departureTime":"09:20","arrivalTime":"12:01","duration":"2h41min","date":"2026-07-07","totalDistanceKm":560,"seatTypes":[{"type":"二等座","price":0.32,"remain":170},{"type":"一等座","price":0.56,"r...(truncated)
+[2026-07-07 21:56:16] request GET /api/tickets/transfer?from=CAN&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:19] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[{"trainNo":"D1600","departureTime":"09:20","arrivalTime":"12:01","duration":"2h41min","minPrice":179.20,"totalDistanceKm":560},{"trainNo":"D1601","departureTime":"10:05","arrivalTime":"12:47","duration":"2h42min","minPrice":190.40,"totalDistanceKm":56...(truncated)
+[2026-07-07 21:56:25] request GET /api/trains?from=CDW&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:25] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 21:56:25] request GET /api/tickets/transfer?from=CDW&to=NNZ&date=2026-07-07
+[2026-07-07 21:56:28] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[]}}
+[2026-07-07 21:56:31] request GET /api/trains?from=NNZ&to=CDW&date=2026-07-07
+[2026-07-07 21:56:31] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 21:56:31] request GET /api/tickets/transfer?from=NNZ&to=CDW&date=2026-07-07
+[2026-07-07 21:56:33] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"11h30min","totalPrice":909.60,"transferStation":"武汉","legs":[{"trainNo":"D2800","fromStation":"南宁","toStation":"武汉","departureTime":"08:45","arrivalTime":"15:23","seatType":"二等座","price":425.60},...(truncated)

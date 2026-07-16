@@ -1,0 +1,47 @@
+[2026-07-07 19:43:03] logger initialized
+[2026-07-07 19:43:03] backend process started
+[2026-07-07 19:43:03] listening on http://localhost:8080
+[2026-07-07 19:43:16] request GET /api/stations
+[2026-07-07 19:43:16] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 19:43:19] request GET /api/orders
+[2026-07-07 19:43:19] response 200 OK for GET /api/orders body={"code":0,"message":"ok","data":[{"orderId":"202607101000","username":"user","trainNo":"G302","date":"2026-07-07","fromStation":"u5E7Fu5DDE","toStation":"u4E0Au6D77","departureTime":"08:00","seatType":"u4E8Cu7B49u5EA7","totalPrice":0,"status":"refunded","createdAt":"2026-07-06T14:30:00"},{"orderId":...(truncated)
+[2026-07-07 19:43:20] request GET /api/stations
+[2026-07-07 19:43:20] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 19:43:20] request GET /api/admin/trains
+[2026-07-07 19:43:20] response 200 OK for GET /api/admin/trains body={"code":0,"message":"ok","data":[{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-10","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.40,"remain":142},{"type":"一等座","price":0.70,"r...(truncated)
+[2026-07-07 19:43:25] request GET /api/trains?from=TJP&to=SJZ&date=2026-07-07
+[2026-07-07 19:43:25] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:25] request GET /api/tickets/transfer?from=TJP&to=SJZ&date=2026-07-07
+[2026-07-07 19:43:25] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:28] request GET /api/tickets/transfer?from=TJP&to=SHH&date=2026-07-07
+[2026-07-07 19:43:28] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:28] request GET /api/trains?from=TJP&to=SHH&date=2026-07-07
+[2026-07-07 19:43:28] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:32] request GET /api/trains?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:32] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:32] request GET /api/tickets/transfer?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:32] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:33] request GET /api/trains?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:33] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:33] request GET /api/tickets/transfer?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:33] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:33] request GET /api/tickets/transfer?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:33] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:33] request GET /api/trains?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:33] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:33] request GET /api/trains?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:33] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:33] request GET /api/tickets/transfer?from=NJH&to=SHH&date=2026-07-07
+[2026-07-07 19:43:33] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:36] request GET /api/tickets/transfer?from=NJH&to=ZZF&date=2026-07-07
+[2026-07-07 19:43:36] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:36] request GET /api/trains?from=NJH&to=ZZF&date=2026-07-07
+[2026-07-07 19:43:36] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:36] request GET /api/tickets/transfer?from=NJH&to=ZZF&date=2026-07-07
+[2026-07-07 19:43:36] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:36] request GET /api/trains?from=NJH&to=ZZF&date=2026-07-07
+[2026-07-07 19:43:36] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}
+[2026-07-07 19:43:37] request GET /api/tickets/transfer?from=NJH&to=ZZF&date=2026-07-07
+[2026-07-07 19:43:37] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"5h25min","totalPrice":626.0,"transferStation":"Shanghai","legs":[{"trainNo":"G101","fromStation":"Beijing","toStation":"Shanghai","departureTime":"08:00","arrivalTime":"12:30","seatType":"Second Class","price":553...(truncated)
+[2026-07-07 19:43:37] request GET /api/trains?from=NJH&to=ZZF&date=2026-07-07
+[2026-07-07 19:43:37] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[]}

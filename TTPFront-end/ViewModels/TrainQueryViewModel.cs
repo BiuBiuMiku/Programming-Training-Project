@@ -113,14 +113,17 @@ public partial class TrainQueryViewModel : ObservableObject
                     {
                         // 为每段行程生成可选座位类型
                         foreach (var leg in r.Legs)
-                            leg.SeatOptions = SeatRate.GenerateOptions(leg);
+                        {
+                            if (leg.SeatOptions.Count == 0)
+                                leg.SeatOptions = SeatRate.GenerateOptions(leg);
+                        }
 
                         routes.Add(new RouteOption
                         {
                             Type = "中转",
                             DisplayTrainNo = r.Legs.Count >= 2 ? $"{r.Legs[0].TrainNo} → {r.Legs[1].TrainNo}" : "中转",
                             FromStation = r.Legs.Count > 0 ? r.Legs[0].FromStation : SelectedFromStation?.Name ?? "",
-                            ToStation = r.Legs.Count >= 2 ? r.Legs[1].ToStation : SelectedToStation?.Name ?? "",
+                            ToStation = r.Legs.Count > 0 ? r.Legs.Last().ToStation : SelectedToStation?.Name ?? "",
                             DepartureTime = r.Legs.Count > 0 ? r.Legs[0].DepartureTime : "",
                             ArrivalTime = r.Legs.Count >= 2 ? r.Legs[1].ArrivalTime : "",
                             Duration = r.TotalDuration, MinPrice = r.TotalPrice,

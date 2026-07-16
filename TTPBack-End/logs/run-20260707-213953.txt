@@ -1,0 +1,9 @@
+[2026-07-07 21:39:53] logger initialized
+[2026-07-07 21:39:53] backend process started
+[2026-07-07 21:39:53] listening on http://localhost:8080
+[2026-07-07 21:39:54] request GET /api/tickets/transfer?from=CAN&to=SHH&date=2026-07-10
+[2026-07-07 21:39:56] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[{"trainNo":"G1400","departureTime":"06:50","arrivalTime":"12:52","duration":"6h2min","minPrice":564.00,"totalDistanceKm":1410},{"trainNo":"G1401","departureTime":"07:35","arrivalTime":"13:42","duration":"6h7min","minPrice":578.10,"totalDistanceKm":141...(truncated)
+[2026-07-07 21:39:56] request GET /api/tickets/transfer?from=CAN&to=SYN&date=2026-07-10
+[2026-07-07 21:39:59] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[{"totalDuration":"6h50min","totalPrice":708.60,"transferStation":"北京","legs":[{"trainNo":"Z2909","fromStation":"广州","toStation":"北京","departureTime":"03:30","arrivalTime":"18:28","seatType":"硬座","price":408.60},{"tr...(truncated)
+[2026-07-07 21:39:59] request GET /api/tickets/transfer?from=SJZ&to=TYN&date=2026-07-10
+[2026-07-07 21:40:01] response 200 OK for GET /api/tickets/transfer body={"code":0,"message":"ok","data":{"directTrains":[{"trainNo":"G500","departureTime":"09:20","arrivalTime":"10:24","duration":"1h4min","minPrice":92.00,"totalDistanceKm":230},{"trainNo":"G501","departureTime":"10:07","arrivalTime":"11:12","duration":"1h5min","minPrice":94.30,"totalDistanceKm":230},{"t...(truncated)

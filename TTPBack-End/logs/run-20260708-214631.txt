@@ -1,0 +1,3 @@
+[2026-07-08 21:46:31] [INFO] logger initialized
+[2026-07-08 21:46:31] [INFO] backend process started
+[2026-07-08 21:46:31] [INFO] listening on http://localhost:8080

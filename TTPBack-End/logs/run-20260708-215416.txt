@@ -1,0 +1,24 @@
+[2026-07-08 21:54:16] [INFO] logger initialized
+[2026-07-08 21:54:16] [INFO] backend process started
+[2026-07-08 21:54:16] [INFO] listening on http://localhost:8080
+[2026-07-08 21:54:17] [INFO] REQUEST id=1 method=POST path=/api/orders endpoint=orders.create query={} rawBytes=617 body={
+    "fromStation":  "成都",
+    "passengers":  [
+                       {
+                           "idCard":  "***",
+                           "realName":  "改签测试"
+                       }
+                   ],
+    "seatType":  "二等座",
+    "toStation":  "德阳",
+    "trainNo":  "G2102",
+    "date":  "2026-07-08"
+}
+[2026-07-08 21:54:17] [INFO] ROUTE id=1 endpoint=orders.create
+[2026-07-08 21:54:17] [INFO] RESPONSE id=1 method=POST path=/api/orders endpoint=orders.create http=201 Created durationMs=7 bytes=379 appCode=0 appMessage="order created" trainItems=1 orderItems=1 body={"code":0,"message":"order created","data":{"orderId":"202607101006","username":"user","trainNo":"G2102","date":"2026-07-08","fromStation":"成都","toStation":"德阳","seatType":"二等座","totalPrice":25.2,"passengers":[{"realName":"改签测试","idCard":"TESTCHANGE001","seatNo":"05A"}],"status":"unpaid","createdAt":"2026-07-06T14:30:00","expireAt":"2026-07-06T14:45:00"}}
+[2026-07-08 21:54:17] [INFO] REQUEST id=2 method=POST path=/api/orders/202607101006/pay endpoint=orders.action query={} rawBytes=231 body=<empty>
+[2026-07-08 21:54:17] [INFO] ROUTE id=2 endpoint=orders.action
+[2026-07-08 21:54:17] [INFO] RESPONSE id=2 method=POST path=/api/orders/202607101006/pay endpoint=orders.action http=200 OK durationMs=3 bytes=98 appCode=0 appMessage="pay success" orderItems=1 body={"code":0,"message":"pay success","data":{"orderId":"202607101006","status":"paid","paidCount":1}}
+[2026-07-08 21:54:17] [INFO] REQUEST id=3 method=GET path=/api/orders/202607101006/change-options endpoint=orders.action query={date=2026-07-08} rawBytes=189 body=<empty>
+[2026-07-08 21:54:17] [INFO] ROUTE id=3 endpoint=orders.action
+[2026-07-08 21:54:17] [INFO] RESPONSE id=3 method=GET path=/api/orders/202607101006/change-options endpoint=orders.action http=200 OK durationMs=1 bytes=3042 appCode=0 appMessage="ok" trainItems=10 orderItems=1 body={"code":0,"message":"ok","data":{"originalOrder":{"orderId":"202607101006","username":"user","trainNo":"G2102","date":"2026-07-08","fromStation":"成都","toStation":"德阳","departureTime":"08:00","seatType":"二等座","totalPrice":25.2,"status":"paid","createdAt":"2026-07-06T14:30:00"},"availableTrains":[{"trainNo":"G2100","fromStation":"成都","toStation":"德阳","departureTime":"07:05","arrivalTime":"07:26","date":"2026-07-08","priceDiff":-1.20,"seatTypes":[{"type":"二等座","price":24.00,"remain":142},{"type":"一等座","price":42.00,"remain":44},{"type":"商务座","price":81.00,"remain":12}]},{"trainNo":"G2101","fromStation":"成都","toStation":"德阳","departureTime":"07:50","arrivalTime":"08:12","date":"2026-07-08","priceDiff":-0.60,"seatTypes":[{"type":"二等座","price":24.60,"remain":138},{"type":"一等座","price":43.20,"remain":43},{"type":"商务座","price":81....(truncated)

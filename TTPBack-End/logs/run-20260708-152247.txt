@@ -1,0 +1,53 @@
+[2026-07-08 15:22:47] [INFO] logger initialized
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip invalid order row id=202607101003 reason="invalid stod argument"
+[2026-07-08 15:22:47] [WARN] skip invalid order row id=202607101004 reason="invalid stod argument"
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=11
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [WARN] skip malformed order row fieldCount=10
+[2026-07-08 15:22:47] [INFO] backend process started
+[2026-07-08 15:22:47] [INFO] listening on http://localhost:8080
+[2026-07-08 15:23:08] [INFO] REQUEST id=1 method=GET path=/api/admin/trains endpoint=admin.trains.list query={} rawBytes=175 body=<empty>
+[2026-07-08 15:23:08] [INFO] ROUTE id=1 endpoint=admin.trains.list
+[2026-07-08 15:23:09] [INFO] RESPONSE id=1 method=GET path=/api/admin/trains endpoint=admin.trains.list http=200 OK durationMs=17 bytes=99803 appCode=0 appMessage="ok" trainItems=300 body={"code":0,"message":"ok","data":[{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-10","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":532.00,"remain":142},{"type":"一等座","price":931.00,"remain":44},{"type":"商务座","price":1795.50,"remain":12}]},{"trainNo":"G101","fromStation":"北京","toStation":"上海","departureTime":"07:25","arrivalTime":"12:14","duration":"4h49min","date":"2026-07-10","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":545.30,"remain":138},{"type":"一等座","price":957.60,"remain":43},{"type":"商务座","price":1795.50,"remain":12}]},{"trainNo":"G102","fromStation":"北京","toStation":"上海","departureTime":"08:10","arrivalTime":"13:00","duration":"4h50min","date":"2026-07-10","totalDistanceKm":1330,"seatTypes":[{"type":"二等�...(truncated)
+[2026-07-08 15:23:09] [INFO] REQUEST id=2 method=GET path=/api/trains endpoint=trains.search query={date=2026-07-08, from=BJP, to=SHH} rawBytes=177 body=<empty>
+[2026-07-08 15:23:09] [INFO] ROUTE id=2 endpoint=trains.search
+[2026-07-08 15:23:09] [INFO] RESPONSE id=2 method=GET path=/api/trains endpoint=trains.search http=200 OK durationMs=2 bytes=3290 appCode=0 appMessage="ok" trainItems=10 body={"code":0,"message":"ok","data":[{"trainNo":"G103","fromStation":"北京","toStation":"上海","departureTime":"08:55","arrivalTime":"13:37","duration":"4h42min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.40,"remain":130},{"type":"一等座","price":0.72,"remain":41},{"type":"商务座","price":1.35,"remain":11}]},{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.40,"remain":142},{"type":"一等座","price":0.70,"remain":44},{"type":"商务座","price":1.35,"remain":12}]},{"trainNo":"G106","fromStation":"北京","toStation":"上海","departureTime":"11:10","arrivalTime":"15:54","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0....(truncated)
+[2026-07-08 15:23:09] [INFO] REQUEST id=3 method=POST path=/api/orders endpoint=orders.create query={} rawBytes=739 body={
+    "fromStation":  "北京",
+    "passengers":  [
+                       {
+                           "idCard":  "***",
+                           "realName":  "乘客一"
+                       },
+                       {
+                           "idCard":  "***",
+                           "realName":  "乘客二"
+                       }
+                   ],
+    "seatType":  "二等座",
+    "toStation":  "上海",
+    "trainNo":  "G100",
+    "date":  "2026-07-08"
+}
+[2026-07-08 15:23:09] [INFO] ROUTE id=3 endpoint=orders.create
+[2026-07-08 15:23:09] [INFO] RESPONSE id=3 method=POST path=/api/orders endpoint=orders.create http=201 Created durationMs=20 bytes=380 appCode=0 appMessage="order created" trainItems=1 orderItems=1 body={"code":0,"message":"order created","data":{"orderId":"202607101000","username":"user","trainNo":"G100","date":"2026-07-08","fromStation":"北京","toStation":"上海","seatType":"二等座","totalPrice":1064,"passengers":[{"realName":"乘客一","idCard":"110101199001010011","seatNo":"05A"}],"status":"unpaid","createdAt":"2026-07-06T14:30:00","expireAt":"2026-07-06T14:45:00"}}

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jesst\Desktop\编程实训\墨染的project\TrainTicketProject\Back-end\build\CMakeFiles\7e961f14f220ac44e58d5245ead08d36\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{10DD80EB-4F35-347F-B3ED-64E5AD51EB14}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

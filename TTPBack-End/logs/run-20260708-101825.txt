@@ -1,0 +1,12 @@
+[2026-07-08 10:18:25] [INFO] logger initialized
+[2026-07-08 10:18:25] [INFO] backend process started
+[2026-07-08 10:18:25] [INFO] listening on http://localhost:8080
+[2026-07-08 10:18:26] [INFO] REQUEST id=1 method=GET path=/api/trains endpoint=trains.search query={date=2026-07-08, from=BJP} rawBytes=194 body=<empty>
+[2026-07-08 10:18:26] [INFO] ROUTE id=1 endpoint=trains.search
+[2026-07-08 10:18:26] [WARN] RESPONSE id=1 method=GET path=/api/trains endpoint=trains.search http=200 OK durationMs=1 bytes=26082 appCode=0 appMessage="ok" trainItems=80 body={"code":0,"message":"ok","data":[{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.40,"remain":142},{"type":"一等座","price":0.70,"remain":44},{"type":"商务座","price":1.35,"remain":12}]},{"trainNo":"G101","fromStation":"北京","toStation":"上海","departureTime":"07:25","arrivalTime":"12:14","duration":"4h49min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.41,"remain":138},{"type":"一等座","price":0.72,"remain":43},{"type":"商务座","price":1.35,"remain":12}]},{"trainNo":"G102","fromStation":"北京","toStation":"上海","departureTime":"08:10","arrivalTime":"13:00","duration":"4h50min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0....(truncated) warnings=zero-price-in-response
+[2026-07-08 10:18:26] [INFO] REQUEST id=2 method=GET path=/api/tickets/transfer endpoint=tickets.transfer query={date=2026-07-08, from=CDW, to=NNZ} rawBytes=187 body=<empty>
+[2026-07-08 10:18:26] [INFO] ROUTE id=2 endpoint=tickets.transfer
+[2026-07-08 10:18:32] [WARN] RESPONSE id=2 method=GET path=/api/tickets/transfer endpoint=tickets.transfer http=200 OK durationMs=5846 bytes=72 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":{"directTrains":[],"transferRoutes":[]}} warnings=search-returned-empty-results
+[2026-07-08 10:18:32] [INFO] REQUEST id=3 method=POST path=/api/auth/login endpoint=auth.login query={} rawBytes=240 body={"username":"user","password":"***"}
+[2026-07-08 10:18:32] [INFO] ROUTE id=3 endpoint=auth.login
+[2026-07-08 10:18:32] [WARN] RESPONSE id=3 method=POST path=/api/auth/login endpoint=auth.login http=401 Unauthorized durationMs=0 bytes=67 appCode=40101 appMessage="invalid username or password" body={"code":40101,"message":"invalid username or password","data":null} warnings=http-error

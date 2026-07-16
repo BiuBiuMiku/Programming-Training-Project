@@ -1,0 +1,9 @@
+[2026-07-08 10:05:29] logger initialized
+[2026-07-08 10:05:29] backend process started
+[2026-07-08 10:05:29] listening on http://localhost:8080
+[2026-07-08 10:05:30] request GET /api/trains?from=BJP&date=2026-07-08
+[2026-07-08 10:05:30] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.40,"remain":142},{"type":"一等座","price":0.70,"r...(truncated)
+[2026-07-08 10:05:30] request GET /api/trains?to=BJP&date=2026-07-08
+[2026-07-08 10:05:30] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[{"trainNo":"D1300","fromStation":"广州","toStation":"北京","departureTime":"08:10","arrivalTime":"18:04","duration":"9h54min","date":"2026-07-08","totalDistanceKm":2270,"seatTypes":[{"type":"二等座","price":0.32,"remain":170},{"type":"一等座","price":0.56,"...(truncated)
+[2026-07-08 10:05:43] request GET /api/tickets?from=BJP&date=2026-07-08
+[2026-07-08 10:05:43] response 200 OK for GET /api/tickets body={"code":0,"message":"ok","data":{"from":"北京","to":"","date":"2026-07-08","trains":[{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":...(truncated)

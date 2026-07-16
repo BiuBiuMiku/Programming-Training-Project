@@ -154,7 +154,7 @@
                                                                             <DataTrigger.Binding>
                                                                                 <MultiBinding Converter="{StaticResource EqualityConverter}">
                                                                                     <Binding Path=""/>
-                                                                                    <Binding Path="SelectedSeatType" RelativeSource="{RelativeSource AncestorType=ContentPresenter, AncestorLevel=2}"/>
+                                                                                    <Binding Path="DataContext.SelectedSeatType" RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
                                                                                 </MultiBinding>
                                                                             </DataTrigger.Binding>
                                                                             <Setter Property="Background" Value="#F0F4FF"/>
@@ -171,10 +171,7 @@
                                                                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
                                                                     <TextBlock Text="{Binding Type}" FontSize="12"
                                                                                FontWeight="Bold" Foreground="#333"/>
-                                                                    <TextBlock FontSize="11" Foreground="#E67E22">
-                                                                        <Run Text="¥"/>
-                                                                        <Run Text="{Binding Price, StringFormat={}{0:F0}, Mode=OneWay}"/>
-                                                                    </TextBlock>
+                                                                    <StackPanel Orientation="Horizontal"><TextBlock FontSize="11" Foreground="#E67E22"><Run Text="¥"/><Run Text="{Binding Price, StringFormat={}{0:F0}, Mode=OneWay}"/></TextBlock><TextBlock Text=" 余票 " FontSize="11" Foreground="#999"/><TextBlock Text="{Binding Remain}" FontSize="11" Foreground="#4A90D9"/></StackPanel>
                                                                 </StackPanel>
                                                             </Grid>
                                                         </Border>

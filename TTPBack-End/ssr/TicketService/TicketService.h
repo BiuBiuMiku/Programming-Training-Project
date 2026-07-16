@@ -3,11 +3,13 @@
 #include <filesystem>
 #include <mutex>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 class TicketService
 {
 public:
+    // 业务层：负责车次查询、用户信息和订单相关处理。
     TicketService();
 
     std::string GetStationsJson() const;
@@ -116,9 +118,24 @@ private:
         int distanceKm = 0;
     };
 
+    // A directed adjacency-list edge built from consecutive train stops.
+    struct GraphEdge
+    {
+        std::string fromStation;
+        std::string toStation;
+        std::string trainNo;
+        std::string departureTime;
+        std::string arrivalTime;
+        int distanceKm = 0;
+    };
+
+    // 保护共享数据，避免多个请求同时修改订单或车次信息。
     mutable std::mutex mutex_;
     std::vector<Station> stations_;
     std::vector<Train> trains_;
+    // 以站点名为键的线路邻接表，用于最短路径换乘推荐。
+    // Station-name keyed adjacency list for route recommendations.
+    std::unordered_map<std::string, std::vector<GraphEdge>> routeGraph_;
     std::vector<Order> orders_;
     std::vector<UserAccount> users_;
     UserProfile profile_;
@@ -127,6 +144,7 @@ private:
     void LoadData();
     void SaveData() const;
     void SeedDefaultData();
+    void RebuildRouteGraph();
 
     static std::filesystem::path DataPath(const std::string& fileName);
     static std::vector<std::string> Split(const std::string& value, char delimiter);
@@ -140,6 +158,7 @@ private:
     static int ExtractInt(const std::string& json, const std::string& key, int fallback = 0);
     static double ExtractDouble(const std::string& json, const std::string& key, double fallback = 0);
     static int PassengerCountFromOrderJson(const std::string& json);
+    static std::vector<std::pair<std::string, std::string>> ExtractPassengersFromOrderJson(const std::string& json);
 
     static std::string ExtractString(const std::string& json, const std::string& key);
     static std::string DecodeJsonEscape(const std::string& value);
@@ -152,11 +171,16 @@ private:
     static std::string TrainToJson(const Train& train, const std::string& date, bool includeStops);
     static std::string TrainToAdminListJson(const Train& train, const std::string& date);
     std::string ResolveStationName(const std::string& codeOrName) const;
+    bool IsKnownStation(const std::string& codeOrName) const;
     bool TryGetSegment(const Train& train, const std::string& from, const std::string& to, SegmentInfo& segment) const;
     bool TryGetQuerySegment(const Train& train, const std::string& from, const std::string& to, SegmentInfo& segment) const;
     std::string BuildSegmentTrainJson(const Train& train, const SegmentInfo& segment, const std::string& date) const;
+    std::string BuildChangeTrainOptionJson(const Train& train, const SegmentInfo& segment, const std::string& date, double originalPrice) const;
     std::string BuildTransferDirectJson(const Train& train, const SegmentInfo& segment) const;
     std::string BuildTransferRouteJson(const Train& firstTrain, const SegmentInfo& firstSegment, const Train& secondTrain, const SegmentInfo& secondSegment) const;
+    std::vector<GraphEdge> FindShortestRouteDijkstra(const std::string& from, const std::string& to, const std::string& excludedEdge = "") const;
+    std::vector<GraphEdge> FindShortestRouteFloyd(const std::string& from, const std::string& to) const;
+    std::string BuildGraphTransferRouteJson(const std::vector<GraphEdge>& path, const std::string& algorithm) const;
     static std::string SeatTypesForSegmentJson(const Train& train, int distanceKm);
     static int SegmentDistanceKm(const Train& train, std::size_t fromIndex, std::size_t toIndex);
     static std::string SegmentDuration(const Train& train, std::size_t fromIndex, std::size_t toIndex);

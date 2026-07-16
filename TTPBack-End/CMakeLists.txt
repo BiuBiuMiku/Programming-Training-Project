@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.20)
 
 project(TrainTicketBackEnd VERSION 1.0 LANGUAGES CXX)
 
@@ -12,7 +12,20 @@ add_executable(TrainTicketBackEnd
     ${SRC_DIR}/main.cpp
     ${SRC_DIR}/Logger.cpp
     ${SRC_DIR}/ApiService/ApiService.cpp
+    ${SRC_DIR}/ApiService/methods/Get.cpp
+    ${SRC_DIR}/ApiService/methods/Post.cpp
+    ${SRC_DIR}/ApiService/methods/Put.cpp
+    ${SRC_DIR}/ApiService/methods/Delete.cpp
+    ${SRC_DIR}/ApiService/methods/Push.cpp
     ${SRC_DIR}/TicketService/TicketService.cpp
+    ${SRC_DIR}/TicketService/modules/Query.cpp
+    ${SRC_DIR}/TicketService/modules/Auth.cpp
+    ${SRC_DIR}/TicketService/modules/Order.cpp
+    ${SRC_DIR}/TicketService/modules/Refund.cpp
+    ${SRC_DIR}/TicketService/modules/Admin.cpp
+    ${SRC_DIR}/TicketService/modules/Json.cpp
+    ${SRC_DIR}/TicketService/modules/Route.cpp
+    ${SRC_DIR}/TicketService/modules/Graph.cpp
 )
 
 target_include_directories(TrainTicketBackEnd PRIVATE
@@ -27,7 +40,8 @@ target_compile_definitions(TrainTicketBackEnd PRIVATE
 )
 
 if (MSVC)
-    target_compile_options(TrainTicketBackEnd PRIVATE /W4 /permissive-)
+    # 统一按 UTF-8 编译，保证后端中文注释和字符串在不同 Windows 代码页下保持一致。
+    target_compile_options(TrainTicketBackEnd PRIVATE /W4 /permissive- /utf-8)
 else()
     target_compile_options(TrainTicketBackEnd PRIVATE -Wall -Wextra -Wpedantic)
 endif()
@@ -35,3 +49,4 @@ endif()
 if (WIN32)
     target_link_libraries(TrainTicketBackEnd PRIVATE ws2_32)
 endif()
+

@@ -1,0 +1,15 @@
+[2026-07-07 16:30:43] logger initialized
+[2026-07-07 16:30:43] backend process started
+[2026-07-07 16:30:43] listening on http://localhost:8080
+[2026-07-07 16:31:09] request GET /api/stations
+[2026-07-07 16:31:09] response 200 OK for GET /api/stations body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP...(truncated)
+[2026-07-07 16:31:09] request GET /api/trains?date=2026-07-07
+[2026-07-07 16:31:09] response 200 OK for GET /api/trains body={"code":0,"message":"ok","data":[{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-07","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":0.40,"remain":142},{"type":"一等座","price":0.70,"r...(truncated)
+[2026-07-07 16:32:10] request POST /api/orders body=D1
+{"username":"admin","trainNo":"G100","date":"2026-07-07","fromStation":"\u5317\u4EAC","toStation":"\u4E0A\u6D77","seatType":"\u5546\u52A1\u5EA7","passengers":[{"realName":"asd","idCard":"asdas1111111111111"}]}
+0
+
+
+[2026-07-07 16:32:10] response 201 Created for POST /api/orders body={"code":0,"message":"order created","data":{"orderId":"202607101006","username":"admin","trainNo":"G100","date":"2026-07-07","fromStation":"u5317u4EAC","toStation":"u4E0Au6D77","seatType":"u5546u52A1u5EA7","totalPrice":0,"passengers":[{"realName":"asd","idCard":"asdas1111111111111","seatNo":"05A"}],...(truncated)
+[2026-07-07 16:32:11] request POST /api/orders/202607101006/pay
+[2026-07-07 16:32:11] response 200 OK for POST /api/orders/202607101006/pay body={"code":0,"message":"pay success","data":{"orderId":"202607101006","status":"paid"}}

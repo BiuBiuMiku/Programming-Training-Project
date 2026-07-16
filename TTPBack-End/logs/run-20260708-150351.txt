@@ -1,0 +1,80 @@
+[2026-07-08 15:03:51] [INFO] logger initialized
+[2026-07-08 15:03:51] [INFO] backend process started
+[2026-07-08 15:03:51] [INFO] listening on http://localhost:8080
+[2026-07-08 15:03:58] [INFO] REQUEST id=1 method=GET path=/api/stations endpoint=stations.list query={} rawBytes=226 body=<empty>
+[2026-07-08 15:03:58] [INFO] ROUTE id=1 endpoint=stations.list
+[2026-07-08 15:03:58] [INFO] RESPONSE id=1 method=GET path=/api/stations endpoint=stations.list http=200 OK durationMs=2 bytes=9503 appCode=0 appMessage="ok" stationItems=53 body={"code":0,"message":"ok","data":[{"code":"BJP","name":"北京","city":"北京","edges":[{"fromCode":"BJP","toCode":"JNK","distance":410},{"fromCode":"BJP","toCode":"TJP","distance":120},{"fromCode":"BJP","toCode":"ZZF","distance":690},{"fromCode":"BJP","toCode":"SJZ","distance":280},{"fromCode":"BJP","toCode":"HHT","distance":480}]},{"code":"TJP","name":"天津","city":"天津","edges":[{"fromCode":"TJP","toCode":"BJP","distance":120},{"fromCode":"TJP","toCode":"JNK","distance":410},{"fromCode":"TJP","toCode":"SYN","distance":630}]},{"code":"SJZ","name":"石家庄","city":"河北","edges":[{"fromCode":"SJZ","toCode":"BJP","distance":280},{"fromCode":"SJZ","toCode":"ZZF","distance":410},{"fromCode":"SJZ","toCode":"TYN","distance":230}]},{"code":"TYN","name":"太原","city":"山西","edges":[{"fromCode":"TYN","toCode":"SJZ","distance":230},{"fromCode":"TYN","toCode":"HHT","distance":430}]}...(truncated)
+[2026-07-08 15:03:59] [INFO] REQUEST id=2 method=GET path=/api/trains endpoint=trains.search query={date=2026-07-08} rawBytes=240 body=<empty>
+[2026-07-08 15:03:59] [INFO] ROUTE id=2 endpoint=trains.search
+[2026-07-08 15:03:59] [INFO] RESPONSE id=2 method=GET path=/api/trains endpoint=trains.search http=200 OK durationMs=4 bytes=99803 appCode=0 appMessage="ok" trainItems=300 body={"code":0,"message":"ok","data":[{"trainNo":"G503","fromStation":"北京","toStation":"太原","departureTime":"10:15","arrivalTime":"12:38","duration":"2h23min","date":"2026-07-08","totalDistanceKm":510,"seatTypes":[{"type":"二等座","price":204.00,"remain":130},{"type":"一等座","price":367.20,"remain":41},{"type":"商务座","price":688.50,"remain":11}]},{"trainNo":"G500","fromStation":"北京","toStation":"太原","departureTime":"08:00","arrivalTime":"10:24","duration":"2h24min","date":"2026-07-08","totalDistanceKm":510,"seatTypes":[{"type":"二等座","price":204.00,"remain":142},{"type":"一等座","price":357.00,"remain":44},{"type":"商务座","price":688.50,"remain":12}]},{"trainNo":"G509","fromStation":"北京","toStation":"太原","departureTime":"14:45","arrivalTime":"17:10","duration":"2h25min","date":"2026-07-08","totalDistanceKm":510,"seatTypes":[{"type":"二等座","...(truncated)
+[2026-07-08 15:04:33] [INFO] REQUEST id=3 method=POST path=/api/orders endpoint=orders.create query={} rawBytes=516 body=CD
+{"trainNo":"G100","date":"2026-07-08","fromStation":"\u5317\u4EAC","toStation":"\u4E0A\u6D77","seatType":"\u4E8C\u7B49\u5EA7","passengers":[{"realName":"\u963F\u65AF\u987F","idCard":"***"}]}
+0
+
+
+[2026-07-08 15:04:33] [INFO] ROUTE id=3 endpoint=orders.create
+[2026-07-08 15:04:33] [INFO] RESPONSE id=3 method=POST path=/api/orders endpoint=orders.create http=201 Created durationMs=11 bytes=379 appCode=0 appMessage="order created" trainItems=1 orderItems=1 body={"code":0,"message":"order created","data":{"orderId":"202607101016","username":"user","trainNo":"G100","date":"2026-07-08","fromStation":"北京","toStation":"上海","seatType":"二等座","totalPrice":532,"passengers":[{"realName":"阿斯顿","idCard":"111111111111111111","seatNo":"05A"}],"status":"unpaid","createdAt":"2026-07-06T14:30:00","expireAt":"2026-07-06T14:45:00"}}
+[2026-07-08 15:04:33] [INFO] REQUEST id=4 method=POST path=/api/orders/202607101016/pay endpoint=orders.action query={} rawBytes=261 body=<empty>
+[2026-07-08 15:04:33] [INFO] ROUTE id=4 endpoint=orders.action
+[2026-07-08 15:04:33] [INFO] RESPONSE id=4 method=POST path=/api/orders/202607101016/pay endpoint=orders.action http=200 OK durationMs=18 bytes=84 appCode=0 appMessage="pay success" orderItems=1 body={"code":0,"message":"pay success","data":{"orderId":"202607101016","status":"paid"}}
+[2026-07-08 15:04:35] [INFO] REQUEST id=5 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:04:35] [INFO] ROUTE id=5 endpoint=orders.list
+[2026-07-08 15:04:35] [INFO] RESPONSE id=5 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:37] [INFO] REQUEST id=6 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:04:37] [INFO] ROUTE id=6 endpoint=orders.list
+[2026-07-08 15:04:37] [INFO] RESPONSE id=6 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=0 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:38] [INFO] REQUEST id=7 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:04:38] [INFO] ROUTE id=7 endpoint=orders.list
+[2026-07-08 15:04:38] [INFO] RESPONSE id=7 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:38] [INFO] REQUEST id=8 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:04:38] [INFO] ROUTE id=8 endpoint=orders.list
+[2026-07-08 15:04:38] [INFO] RESPONSE id=8 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=0 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:38] [INFO] REQUEST id=9 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:04:38] [INFO] ROUTE id=9 endpoint=orders.list
+[2026-07-08 15:04:38] [INFO] RESPONSE id=9 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:39] [INFO] REQUEST id=10 method=GET path=/api/orders endpoint=orders.list query={status=unpaid} rawBytes=238 body=<empty>
+[2026-07-08 15:04:39] [INFO] ROUTE id=10 endpoint=orders.list
+[2026-07-08 15:04:39] [INFO] RESPONSE id=10 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:40] [INFO] REQUEST id=11 method=GET path=/api/orders endpoint=orders.list query={status=paid} rawBytes=236 body=<empty>
+[2026-07-08 15:04:40] [INFO] ROUTE id=11 endpoint=orders.list
+[2026-07-08 15:04:40] [INFO] RESPONSE id=11 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=0 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:41] [INFO] REQUEST id=12 method=GET path=/api/orders endpoint=orders.list query={status=refunded} rawBytes=240 body=<empty>
+[2026-07-08 15:04:41] [INFO] ROUTE id=12 endpoint=orders.list
+[2026-07-08 15:04:41] [INFO] RESPONSE id=12 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:43] [INFO] REQUEST id=13 method=GET path=/api/orders endpoint=orders.list query={status=refunded} rawBytes=240 body=<empty>
+[2026-07-08 15:04:43] [INFO] ROUTE id=13 endpoint=orders.list
+[2026-07-08 15:04:43] [INFO] RESPONSE id=13 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=0 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:47] [INFO] REQUEST id=14 method=POST path=/api/orders endpoint=orders.create query={} rawBytes=516 body=CD
+{"trainNo":"G100","date":"2026-07-08","fromStation":"\u5317\u4EAC","toStation":"\u4E0A\u6D77","seatType":"\u4E8C\u7B49\u5EA7","passengers":[{"realName":"\u963F\u65AF\u987F","idCard":"***"}]}
+0
+
+
+[2026-07-08 15:04:47] [INFO] ROUTE id=14 endpoint=orders.create
+[2026-07-08 15:04:47] [INFO] RESPONSE id=14 method=POST path=/api/orders endpoint=orders.create http=201 Created durationMs=9 bytes=379 appCode=0 appMessage="order created" trainItems=1 orderItems=1 body={"code":0,"message":"order created","data":{"orderId":"202607101017","username":"user","trainNo":"G100","date":"2026-07-08","fromStation":"北京","toStation":"上海","seatType":"二等座","totalPrice":532,"passengers":[{"realName":"阿斯顿","idCard":"111111111111111111","seatNo":"05A"}],"status":"unpaid","createdAt":"2026-07-06T14:30:00","expireAt":"2026-07-06T14:45:00"}}
+[2026-07-08 15:04:47] [INFO] REQUEST id=15 method=POST path=/api/orders/202607101017/pay endpoint=orders.action query={} rawBytes=261 body=<empty>
+[2026-07-08 15:04:47] [INFO] ROUTE id=15 endpoint=orders.action
+[2026-07-08 15:04:47] [INFO] RESPONSE id=15 method=POST path=/api/orders/202607101017/pay endpoint=orders.action http=200 OK durationMs=12 bytes=84 appCode=0 appMessage="pay success" orderItems=1 body={"code":0,"message":"pay success","data":{"orderId":"202607101017","status":"paid"}}
+[2026-07-08 15:04:49] [INFO] REQUEST id=16 method=GET path=/api/orders endpoint=orders.list query={status=refunded} rawBytes=240 body=<empty>
+[2026-07-08 15:04:49] [INFO] ROUTE id=16 endpoint=orders.list
+[2026-07-08 15:04:49] [INFO] RESPONSE id=16 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:04:55] [INFO] REQUEST id=17 method=GET path=/api/trains endpoint=trains.search query={date=2026-07-08, from=BJP, to=SHH} rawBytes=201 body=<empty>
+[2026-07-08 15:04:55] [INFO] ROUTE id=17 endpoint=trains.search
+[2026-07-08 15:04:55] [INFO] RESPONSE id=17 method=GET path=/api/trains endpoint=trains.search http=200 OK durationMs=2 bytes=3360 appCode=0 appMessage="ok" trainItems=10 body={"code":0,"message":"ok","data":[{"trainNo":"G103","fromStation":"北京","toStation":"上海","departureTime":"08:55","arrivalTime":"13:37","duration":"4h42min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":532.00,"remain":130},{"type":"一等座","price":957.60,"remain":41},{"type":"商务座","price":1795.50,"remain":11}]},{"trainNo":"G100","fromStation":"北京","toStation":"上海","departureTime":"06:40","arrivalTime":"11:24","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等座","price":532.00,"remain":142},{"type":"一等座","price":931.00,"remain":44},{"type":"商务座","price":1795.50,"remain":12}]},{"trainNo":"G106","fromStation":"北京","toStation":"上海","departureTime":"11:10","arrivalTime":"15:54","duration":"4h44min","date":"2026-07-08","totalDistanceKm":1330,"seatTypes":[{"type":"二等�...(truncated)
+[2026-07-08 15:05:01] [INFO] REQUEST id=18 method=GET path=/api/orders endpoint=orders.list query={status=refunded} rawBytes=240 body=<empty>
+[2026-07-08 15:05:01] [INFO] ROUTE id=18 endpoint=orders.list
+[2026-07-08 15:05:01] [INFO] RESPONSE id=18 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:05:02] [INFO] REQUEST id=19 method=GET path=/api/orders endpoint=orders.list query={status=refunded} rawBytes=240 body=<empty>
+[2026-07-08 15:05:02] [INFO] ROUTE id=19 endpoint=orders.list
+[2026-07-08 15:05:02] [INFO] RESPONSE id=19 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:05:02] [INFO] REQUEST id=20 method=GET path=/api/orders endpoint=orders.list query={status=refunded} rawBytes=240 body=<empty>
+[2026-07-08 15:05:02] [INFO] ROUTE id=20 endpoint=orders.list
+[2026-07-08 15:05:02] [INFO] RESPONSE id=20 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:05:03] [INFO] REQUEST id=21 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:05:03] [INFO] ROUTE id=21 endpoint=orders.list
+[2026-07-08 15:05:03] [INFO] RESPONSE id=21 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:05:03] [INFO] REQUEST id=22 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:05:03] [INFO] ROUTE id=22 endpoint=orders.list
+[2026-07-08 15:05:03] [INFO] RESPONSE id=22 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
+[2026-07-08 15:05:03] [INFO] REQUEST id=23 method=GET path=/api/orders endpoint=orders.list query={} rawBytes=224 body=<empty>
+[2026-07-08 15:05:03] [INFO] ROUTE id=23 endpoint=orders.list
+[2026-07-08 15:05:03] [INFO] RESPONSE id=23 method=GET path=/api/orders endpoint=orders.list http=200 OK durationMs=1 bytes=35 appCode=0 appMessage="ok" dataState=empty body={"code":0,"message":"ok","data":[]}
