@@ -202,7 +202,8 @@ public partial class TrainQueryViewModel : ObservableObject
                 w = new Views.BookingWindow(_httpClient, r.SourceTrain.TrainNo, r.SourceTrain.FromStation, r.SourceTrain.ToStation, SearchDate.ToString("yyyy-MM-dd"), r.SourceTrain.SeatTypes, SavedPassengers, r.TotalDistanceKm);
             else return;
             SafeSetOwner(w);
-            w.ShowDialog();
+            var result = w.ShowDialog();
+            if (result == true) _ = SearchAsync();
         }
         catch (Exception ex)
         {
